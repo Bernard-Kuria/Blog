@@ -3,9 +3,7 @@ import Link from "next/link";
 export default function Header() {
   return (
     <div className="flex w-full h-[40px] mt-[10px] relative pl-[250px] items-center">
-      <div className="text-(--secondary-blue) text-2xl font-medium">
-        {"Bernard's Blog"}
-      </div>
+      <div className="section-title">{"Bernard's Blog"}</div>
       <div className="absolute right-0 w-[570px] h-full border-t border-b border-l rounded-tl-[10px] rounded-bl-[10px] border-(--border-color)">
         <ul className="flex w-full h-full justify-around text-[12px] pr-[165px] pl-[20px] items-center text-center">
           <li>

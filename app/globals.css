@@ -44,3 +44,7 @@ body {
 .merriweather-font {
   font-family: var(--font-merriweather);
 }
+
+.section-title {
+  @apply text-(--secondary-blue) text-2xl font-medium;
+}
