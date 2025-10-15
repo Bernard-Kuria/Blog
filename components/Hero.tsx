@@ -14,14 +14,14 @@ export default function Hero() {
       height: "30",
       top: "30px",
       left: "30%",
-      color: "bg-(--white)",
+      color: "bg-(--foreground)",
     },
     {
       width: "170",
       height: "30",
       top: "338px",
       left: "275px",
-      color: "bg-(--white)",
+      color: "bg-(--foreground)",
     },
     {
       width: "70",

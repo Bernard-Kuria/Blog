@@ -1,11 +1,13 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
+  --background: #f4f5f0;
   --foreground: #171717;
   --secondary-blue: #00eeff;
   --primary-blue: #2823c0;
-  --white: #ffffff;
+  --white: #f4f5f0;
   --black: #000000;
 }
 
@@ -17,8 +19,11 @@
   --font-inter: var(--font-inter);
   --font-merriweather: var(--font-merriweather);
   --font-fira: var(--font-fira);
+  --font-mulish: var(--font-mulish);
+  --font-lexend: var(--font-lexend);
 }
 
+/* Dark-Light-Sys themes */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #232323;
@@ -26,23 +31,60 @@
   }
 }
 
+html.light {
+  --background: #f4f5f0;
+  --foreground: #171717;
+}
+
+html.dark {
+  --background: #232323;
+  --foreground: #ffffff;
+}
+
+/* Text Styles */
+.sub-title {
+  font-family: var(--font-lexend);
+  @apply font-semibold text-[20px];
+}
+
+.detail-text {
+  font-family: var(--font-mulish);
+  @apply font-normal text-[12px];
+}
+
+.blog-font {
+  font-family: var(--font-mulish);
+  @apply font-normal text-[16px];
+}
+
+.blog-title {
+  font-family: var(--font-lexend);
+  @apply font-semibold text-[32px];
+}
+
+.Logo {
+  font-family: var(--font-lexend);
+  @apply font-semibold text-[28px];
+}
+
+.values {
+  font-family: var(--font-lexend);
+  @apply font-normal text-[64px];
+}
+
+.icon-size {
+  @apply w-[12px] h-[12px];
+}
+
+/* Other styles */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter);
+  font-family: var(--font-mulish);
 }
 
-/* Fonts */
-.fira-font {
-  font-family: var(--font-fira);
-}
-
-.inter-font {
-  font-family: var(--font-inter);
-}
-
-.merriweather-font {
-  font-family: var(--font-merriweather);
+.page-layout {
+  @apply grid justify-center mt-[30px] gap-[100px];
 }
 
 .section-title {

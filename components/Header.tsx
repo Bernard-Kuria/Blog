@@ -1,32 +1,123 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const themeModeBtn = useRef<HTMLLIElement | null>(null);
+  const themeModeToggle = useRef<HTMLDivElement | null>(null);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  const location = usePathname();
+
+  console.log(location);
+
+  function applyToggleStyles(
+    t: "light" | "dark",
+    btn: HTMLLIElement | null,
+    toggle: HTMLDivElement | null
+  ) {
+    if (!btn || !toggle) return;
+    if (t === "dark") {
+      btn.style.borderColor = "#f4f5f0";
+      btn.style.backgroundColor = "#232323";
+      toggle.style.backgroundColor = "#f4f5f0";
+      toggle.style.transform = "translateX(15px)";
+    } else {
+      btn.style.borderColor = "#232323";
+      btn.style.backgroundColor = "#f4f5f0";
+      toggle.style.backgroundColor = "#232323";
+      toggle.style.transform = "translateX(1px)";
+    }
+  }
+
+  // mount: determine initial theme and set toggle position immediately
+  useEffect(() => {
+    if (!themeModeBtn.current || !themeModeToggle.current) return;
+
+    const stored = localStorage.getItem("theme");
+    let initial: "light" | "dark";
+
+    if (stored === "dark" || stored === "light") {
+      initial = stored;
+    } else {
+      const prefersDark =
+        typeof window !== "undefined" &&
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+      initial = prefersDark ? "dark" : "light";
+    }
+
+    setTheme(initial);
+    document.documentElement.classList.toggle("dark", initial === "dark");
+    document.documentElement.classList.toggle("light", initial === "light");
+    applyToggleStyles(initial, themeModeBtn.current, themeModeToggle.current);
+  }, []);
+
+  // whenever theme changes persist and update DOM + toggle styles
+  useEffect(() => {
+    if (!themeModeBtn.current || !themeModeToggle.current) return;
+    localStorage.setItem("theme", theme);
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    document.documentElement.classList.toggle("light", theme === "light");
+    applyToggleStyles(theme, themeModeBtn.current, themeModeToggle.current);
+  }, [theme]);
+
+  function handleThemeBtnClick() {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  }
+
+  const topicLinks = [
+    "projects-and-tech",
+    "startups-and-ideas",
+    "life-on-wheels",
+  ];
+  const topicNames = topicLinks.map((topic) => {
+    const words = topic.split("-").map((word) => {
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    });
+    return words.join(" ");
+  });
+  const topics = topicLinks.map((link, index) => ({
+    link,
+    name: topicNames[index],
+  }));
+
   return (
-    <div className="flex w-full h-[40px] mt-[10px] relative pl-[250px] items-center">
-      <div className="section-title">{"Bernard's Blog"}</div>
-      <div className="absolute right-0 w-[570px] h-full border-t border-b border-l rounded-tl-[10px] rounded-bl-[10px] border-(--border-color)">
-        <ul className="flex w-full h-full justify-around text-[12px] pr-[165px] pl-[20px] items-center text-center">
+    <div className="flex w-full h-[40px] mt-[10px] relative items-center mb-[20px]">
+      <div
+        className={`${
+          location === "/" ? "translate-x-[250px]" : "translate-x-[165px]"
+        }`}
+      >
+        <Link href="/">
+          <div className="section-title">Bernard Kuria</div>
+        </Link>
+        <div className="font-bold">
+          {(() => {
+            const match = topics.find((topic) =>
+              (location ?? "").substring(1).includes(topic.link)
+            );
+            return match ? match.name : null;
+          })()}
+        </div>
+      </div>
+      <div className="absolute right-0 w-[570px] h-full border-t border-b border-l rounded-tl-[10px] rounded-bl-[10px] border-(--border-color) pr-[160px] pl-[20px]">
+        <ul className="flex w-full h-full justify-between text-[12px] items-center text-center">
           <li>
             <Link href="https://bernard-webfolio.web.app/">About Me</Link>
           </li>
           <li className="group relative">
             <Link href="">Topics</Link>
-            <ul className="absolute min-w-[110px] hidden gap-1 pt-[12px] -translate-x-[30px] group-hover:grid hover:grid">
-              <Link href="/projects-&-tech">
-                <li className="border border-(--border-color) rounded-[5px] p-1 hover:bg-(--border-color) hover:text-black">
-                  Projects & Tech
-                </li>
-              </Link>
-              <Link href="/startups-&-ideas">
-                <li className="border border-(--border-color) rounded-[5px] p-1 hover:bg-(--border-color) hover:text-black">
-                  Startups & Ideas
-                </li>
-              </Link>
-              <Link href="/life-on-wheels">
-                <li className="border border-(--border-color) rounded-[5px] p-1 hover:bg-(--border-color) hover:text-black">
-                  Life On Wheels
-                </li>
-              </Link>
+            <ul className="absolute min-w-[150px] hidden gap-1 pt-[12px] -translate-x-[30px] group-hover:grid hover:grid z-1">
+              {topics.map((topic, index) => (
+                <Link href={topic.link} key={index}>
+                  <li className="border border-(--border-color) rounded-[5px] p-1 bg-(--background) hover:bg-(--secondary-blue) hover:text-black">
+                    {topic.name}
+                  </li>
+                </Link>
+              ))}
             </ul>
           </li>
           <li>
@@ -34,6 +125,16 @@ export default function Header() {
           </li>
           <li>
             <Link href="">{"Let's talk"}</Link>
+          </li>
+          <li
+            ref={themeModeBtn}
+            className="border w-[30px] h-[16px] rounded-[16px] cursor-pointer duration-300"
+            onClick={handleThemeBtnClick}
+          >
+            <div
+              ref={themeModeToggle}
+              className="w-[12.78px] h-[12.78px] rounded-[12.78px] bg-(--foreground)  translate-y-[.5px] duration-300"
+            ></div>
           </li>
         </ul>
       </div>

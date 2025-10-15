@@ -1,26 +1,22 @@
 import type { Metadata } from "next";
-import { Inter, Fira_Code, Merriweather_Sans } from "next/font/google";
+import { Mulish, Lexend } from "next/font/google";
 import "./globals.css";
-import Header from "../components/Header";
+import Header from "@c/Header";
+import "@l/icons";
 
-const inter = Inter({
-  variable: "--font-inter",
+const mulish = Mulish({
+  variable: "--font-mulish",
   subsets: ["latin"],
 });
 
-const merriweatherSans = Merriweather_Sans({
-  variable: "--font-merriweather",
-  subsets: ["latin"],
-});
-
-const fira = Fira_Code({
-  variable: "--font-fira",
+const lexend = Lexend({
+  variable: "--font-lexend",
   subsets: ["latin"],
 });
 
 export const metadata = {
   title: "Bernard's Blog",
-  description: "A creative space for web devs and tech explorers",
+  description: "A creative space for me to showcase a glimpse of myself",
 };
 
 export default function RootLayout({
@@ -31,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${merriweatherSans.variable} ${fira.variable} antialiased`}
+        className={`${mulish.variable} ${lexend.variable} antialiased min-h-screen transition-colors duration-500`}
       >
         <Header />
         {children}
