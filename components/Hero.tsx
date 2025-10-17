@@ -60,7 +60,7 @@ export default function Hero() {
           <BorderLines />
           <div className="relative w-[143px] h-[198px] overflow-hidden">
             <Image
-              src="/bike-riding.jpg"
+              src="assets/blogImg/bike-riding.jpg"
               alt="chill image"
               fill
               className="object-cover object-[0%_40%]"
@@ -74,7 +74,7 @@ export default function Hero() {
           <BorderLines />
           <div className="relative w-[292px] h-[143px] overflow-hidden">
             <Image
-              src="/jkuat-hackathon.jpg"
+              src="assets/blogTopicImg/jkuat-hackathon.jpg"
               alt="chill image"
               fill
               className="object-cover object-[0%_40%]"

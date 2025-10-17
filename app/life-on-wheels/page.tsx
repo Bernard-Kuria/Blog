@@ -22,7 +22,7 @@ export default function LifeOnWheels() {
     <div className="relative flex flex-col gap-[20px] w-full">
       <div className="absolute w-full h-[calc(100vh-70px)]">
         <Image
-          src={`/assets/${targetImage?.image}`}
+          src={`/assets/blogTopicImg/${targetImage?.image}`}
           alt="Bike Riding"
           fill
           objectFit="cover"

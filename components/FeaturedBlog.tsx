@@ -7,7 +7,7 @@ export default function FeaturedBlog() {
       <div className="flex gap-[30px]">
         <div className="relative w-[50%]">
           <Image
-            src="/bike-riding.jpg"
+            src="/assets/blogImg/bike-riding.jpg"
             alt="Bike Riding"
             fill
             objectFit="cover"
