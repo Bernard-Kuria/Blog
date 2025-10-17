@@ -68,11 +68,7 @@ export default function Header() {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   }
 
-  const topicLinks = [
-    "projects-and-tech",
-    "startups-and-ideas",
-    "life-on-wheels",
-  ];
+  const topicLinks = ["projects-&-tech", "startups-&-ideas", "life-on-wheels"];
   const topicNames = topicLinks.map((topic) => {
     const words = topic.split("-").map((word) => {
       return word.charAt(0).toUpperCase() + word.slice(1);

@@ -84,7 +84,7 @@ body {
 }
 
 .page-layout {
-  @apply grid justify-center mt-[30px] gap-[100px];
+  @apply pb-[30px];
 }
 
 .section-title {
