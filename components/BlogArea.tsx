@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 export default function BlogArea() {
   return (
     <div className="flex flex-col gap-[20px] w-[1035px] h-[1170px] p-[100px] bg-white dark:bg-black blog-text">
@@ -10,7 +12,13 @@ export default function BlogArea() {
           <div>1 min read</div>
         </div>
         <div className="flex-1"></div>
-        <div className="">share</div>
+        <div className="flex gap-[10px] items-center cursor-pointer">
+          <FontAwesomeIcon
+            className="icon-size"
+            icon={["fas", "share-nodes"]}
+          />
+          <FontAwesomeIcon className="icon-size" icon={["fas", "download"]} />
+        </div>
       </div>
       <div className="blog-title">BLOG TITLE</div>
       <div className="">
@@ -58,7 +66,9 @@ export default function BlogArea() {
           </div>
         </div>
         <div className="flex-1"></div>
-        <div>3</div>
+        <div className="flex gap-[10px] items-center">
+          3 <FontAwesomeIcon className="icon-size" icon={["far", "heart"]} />
+        </div>
       </div>
     </div>
   );

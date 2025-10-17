@@ -5,7 +5,7 @@ import BlogTopics from "@components/BlogTopics";
 export default function BlogPage() {
   return (
     <div className="grid justify-center gap-[30px]">
-      <div>Back</div>
+      <div className="cursor-pointer">&larr; Back</div>
       <BlogArea />
       <Comments />
       <BlogTopics />

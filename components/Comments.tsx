@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 export default function Comments() {
   return (
     <div className="detail-text grid gap-[10px]">
@@ -31,7 +33,10 @@ function Comment() {
       <div className="w-[14px] h-full bg-(--secondary-blue)"></div>
       <div className="grid gap-[10px] bg-white dark:bg-black w-full p-2">
         <div className="">Great Post</div>
-        <div>1</div>
+        <div className="flex gap-[10px] items-center">
+          1{" "}
+          <FontAwesomeIcon className="icon-size" icon={["far", "thumbs-up"]} />
+        </div>
       </div>
     </div>
   );

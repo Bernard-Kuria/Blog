@@ -23,6 +23,7 @@ import {
   faVolumeHigh,
   faVolumeXmark,
   faBars,
+  faDownload,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faGem,
@@ -42,6 +43,7 @@ import {
   faMessage,
   faTrashCan,
   faHeadphones,
+  faThumbsUp,
 } from "@fortawesome/free-regular-svg-icons";
 
 library.add(
@@ -83,5 +85,7 @@ library.add(
   faVolumeHigh,
   faVolumeXmark,
   faHeadphones,
-  faBars
+  faBars,
+  faDownload,
+  faThumbsUp
 );
