@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 export default function FeaturedBlog() {
   return (
@@ -9,7 +9,7 @@ export default function FeaturedBlog() {
           <Image
             src="/assets/blogImg/bike-riding.jpg"
             alt="Bike Riding"
-            fill
+            layout="fill"
             objectFit="cover"
           />
         </div>

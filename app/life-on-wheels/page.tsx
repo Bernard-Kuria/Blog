@@ -1,12 +1,12 @@
 "use client";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { usePathname } from "next/navigation";
 
 import FeaturedBlog from "@c/FeaturedBlog";
 import BlogsList from "@c/BlogsList";
 import Milestones from "@c/Milestones";
-import BlogTopics from "@c/BlogTopics";
+import BlogTopics from "@components/Blogs";
 
 import { blogTopics } from "@l/data";
 
@@ -24,7 +24,7 @@ export default function LifeOnWheels() {
         <Image
           src={`/assets/blogTopicImg/${targetImage?.image}`}
           alt="Bike Riding"
-          fill
+          layout="fill"
           objectFit="cover"
         />
       </div>

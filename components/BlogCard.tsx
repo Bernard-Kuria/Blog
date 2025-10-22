@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -9,7 +9,7 @@ export default function BlogCard() {
   return (
     <div className="border grid grid-rows-[70%_1fr] border-gray-400 h-[400px]">
       <div className="relative">
-        <Image src="/Cyclers.png" alt="" fill />
+        <Image src="/Cyclers.png" alt="" layout="fill" />
       </div>
       <Link href={location + "/blog-page"}>
         <div className="grid gap-[10px] p-[20px]">

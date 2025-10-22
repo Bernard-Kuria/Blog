@@ -1,14 +1,17 @@
-import BlogArea from "@c/BlogArea";
+import BlogReading from "@components/BlogReading";
 import Comments from "@c/Comments";
-import BlogTopics from "@components/BlogTopics";
+import Blogs from "@components/Blogs";
+import Link from "next/link";
 
 export default function BlogPage() {
   return (
     <div className="grid justify-center gap-[30px]">
-      <div className="cursor-pointer">&larr; Back</div>
-      <BlogArea />
+      <Link className="cursor-pointer w-fit" href={"../life-on-wheels"}>
+        &larr; Back
+      </Link>
+      <BlogReading />
       <Comments />
-      <BlogTopics />
+      <Blogs />
     </div>
   );
 }

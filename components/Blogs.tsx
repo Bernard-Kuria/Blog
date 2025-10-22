@@ -1,12 +1,12 @@
 "use client";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { blogTopics } from "@l/data";
 
-export default function BlogTopics() {
+export default function Blogs() {
   const location = usePathname();
 
   return (
@@ -42,7 +42,7 @@ export default function BlogTopics() {
                   <Image
                     src={`/assets/blogTopicImg/${topic.image}`}
                     alt="topic image"
-                    fill
+                    layout="fill"
                     className="object-cover"
                   />
                 </div>

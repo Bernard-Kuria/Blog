@@ -3,6 +3,7 @@ import { Mulish, Lexend } from "next/font/google";
 import "./globals.css";
 import Header from "@c/Header";
 import "@l/icons";
+import Socials from "@c/Socials";
 
 const mulish = Mulish({
   variable: "--font-mulish",
@@ -27,9 +28,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${mulish.variable} ${lexend.variable} antialiased min-h-screen transition-colors duration-500 page-layout`}
+        className={`${mulish.variable} ${lexend.variable} antialiased min-h-screen transition-colors duration-500 pb-[30px]`}
       >
         <Header />
+        <Socials />
         {children}
       </body>
     </html>

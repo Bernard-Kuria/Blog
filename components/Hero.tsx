@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 export default function Hero() {
   const lines = [
@@ -50,7 +50,7 @@ export default function Hero() {
         <Image
           src="/chill.jpg"
           alt="chill image"
-          fill
+          layout="fill"
           className="object-cover object-[0%_40%]"
         />
       </div>
@@ -62,7 +62,7 @@ export default function Hero() {
             <Image
               src="assets/blogImg/bike-riding.jpg"
               alt="chill image"
-              fill
+              layout="fill"
               className="object-cover object-[0%_40%]"
             />
           </div>
@@ -76,7 +76,7 @@ export default function Hero() {
             <Image
               src="assets/blogTopicImg/jkuat-hackathon.jpg"
               alt="chill image"
-              fill
+              layout="fill"
               className="object-cover object-[0%_40%]"
             />
           </div>

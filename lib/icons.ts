@@ -24,6 +24,20 @@ import {
   faVolumeXmark,
   faBars,
   faDownload,
+  // Draftify icons
+  faHeading,
+  faParagraph,
+  faTableList,
+  faList,
+  faLink,
+  faCode,
+  faQuoteRight,
+  faPlay,
+  faAngleDown,
+  faTrash,
+  faRefresh,
+  // Socials icons
+  faGlobe,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faGem,
@@ -44,7 +58,16 @@ import {
   faTrashCan,
   faHeadphones,
   faThumbsUp,
+  faImage,
 } from "@fortawesome/free-regular-svg-icons";
+
+import {
+  faInstagram,
+  faYoutube,
+  faGithub,
+  faXTwitter,
+  faFacebookF,
+} from "@fortawesome/free-brands-svg-icons";
 
 library.add(
   faHands,
@@ -87,5 +110,26 @@ library.add(
   faHeadphones,
   faBars,
   faDownload,
-  faThumbsUp
+  faThumbsUp,
+  faHeading,
+  faParagraph,
+  faTableList,
+  faList,
+  faLink,
+  faCode,
+  faQuoteRight,
+  faPlay,
+  faAngleDown,
+  faXmark,
+  faArrowUpFromBracket,
+  faTrash,
+  faDownload,
+  faRefresh,
+  faImage,
+  faGlobe,
+  faInstagram,
+  faYoutube,
+  faGithub,
+  faXTwitter,
+  faFacebookF
 );
