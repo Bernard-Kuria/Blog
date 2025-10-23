@@ -1,16 +1,13 @@
-import BlogCard from "./BlogCard";
+type BlogsListProps = {
+  title?: string;
+  subtitle?: string;
+};
 
-export default function BlogsList() {
+export default function BlogsList({ title, subtitle }: BlogsListProps) {
   return (
-    <div>
-      <div className="sub-title">Recent Posts</div>
-      <div className="grid grid-cols-3 gap-[20px]">
-        <BlogCard />
-        <BlogCard />
-        <BlogCard />
-        <BlogCard />
-        <BlogCard />
-      </div>
+    <div className="border rounded-[10px] w-full grid gap-[15px] p-5">
+      <div className="sub-title">{title}</div>
+      <div className="blog-font grid grid-cols-3 gap-[20px]">{subtitle}</div>
     </div>
   );
 }

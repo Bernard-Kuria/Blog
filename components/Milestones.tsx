@@ -1,5 +1,5 @@
 "use client";
-import { milestones } from "@lib/data";
+import { milestones } from "@lib/mock-data";
 import { usePathname } from "next/navigation";
 
 export default function Milestones() {

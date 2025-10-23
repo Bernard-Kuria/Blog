@@ -4,7 +4,7 @@ import Image from "next/legacy/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { blogTopics } from "@l/data";
+import { blogTopics } from "@lib/mock-data";
 
 export default function Blogs() {
   const location = usePathname();

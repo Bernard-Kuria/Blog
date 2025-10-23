@@ -97,6 +97,10 @@ body {
   @apply w-full outline-none text-2xl font-semibold;
 }
 
+.subheading {
+  @apply w-full outline-none text-[20px] font-semibold;
+}
+
 .paragraph {
   @apply w-full h-fit outline-none;
 }

@@ -4,7 +4,8 @@ import Draftify from "@c/Draftify";
 import { useState } from "react";
 import Link from "next/link";
 
-import { tags, blogTopics } from "@l/data";
+import { tags, blogTopics } from "@lib/mock-data";
+import SectionTitle from "@components/SectionTitle";
 
 export default function CreateModifyBlog() {
   const [topic, setTopic] = useState<string>("");
@@ -24,7 +25,7 @@ export default function CreateModifyBlog() {
   return (
     <div className="grid justify-center">
       <div className="page-layout flex flex-col gap-[30px]">
-        <div className="values text-(--primary-blue)">Create Blog</div>
+        <SectionTitle title={`Create Blog`} />
         <Link className="cursor-pointer w-fit" href={"../life-on-wheels"}>
           &larr; Back
         </Link>

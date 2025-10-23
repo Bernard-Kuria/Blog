@@ -9,7 +9,7 @@ import FeaturedBlog from "@c/FeaturedBlog";
 import Milestones from "@c/Milestones";
 import BlogTopics from "@components/Blogs";
 
-import { blogTopics, blogs } from "@l/data";
+import { blogTopics, blogs } from "@lib/mock-data";
 import type { blog, blogsType } from "@lib/types";
 
 export default function LifeOnWheels() {

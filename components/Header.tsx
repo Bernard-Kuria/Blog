@@ -110,7 +110,11 @@ export default function Header() {
             const match = topics.find((topic) =>
               (location ?? "").substring(1).includes(topic.link)
             );
-            return match ? match.name : null;
+            return match
+              ? match.name
+              : location === "/dashboard"
+              ? "Dashboard"
+              : null;
           })()}
         </div>
       </div>
