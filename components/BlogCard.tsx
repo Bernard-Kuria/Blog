@@ -7,11 +7,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function BlogCard() {
   const location = usePathname();
   return (
-    <div className="border grid grid-rows-[70%_1fr] border-gray-400 h-[400px]">
-      <div className="relative">
-        <Image src="/Cyclers.png" alt="" layout="fill" />
-      </div>
-      <Link href={location + "/blog-page"}>
+    <Link href={location + "/blog-page"}>
+      <div className="border grid grid-rows-[70%_1fr] border-gray-400 h-[400px]">
+        <div className="relative">
+          <Image src="/Cyclers.png" alt="" layout="fill" />
+        </div>
         <div className="grid gap-[10px] p-[20px]">
           <div className="sub-title text-(--primary-blue)">
             Nyeri: A hilly journey
@@ -31,7 +31,7 @@ export default function BlogCard() {
             </div>
           </div>
         </div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 }

@@ -16,7 +16,7 @@ export const blogTopics = [
   {
     id: 2,
     image: "Bike-riders.png",
-    title: "Life on Wheels",
+    title: "Life On Wheels",
     timeStamp: "Last Updated Mar 21, 2025",
   },
 ];
@@ -25,7 +25,7 @@ export const blogs = [
   {
     id: 1, // link to blog content
     image: "bike-riding.jpg",
-    topic: "Life on Wheels",
+    topic: "Life On Wheels",
     title: "Top Hikes in Nyeri",
     dateCreated: "21 March 2025",
     tags: ["fun, adventure, hiking"], // fun, enginerring, adventure, ...
@@ -58,7 +58,7 @@ export const blogs = [
   {
     id: 3, // link to blog content
     image: "bike-riding.jpg",
-    topic: "Life on Wheels",
+    topic: "Life On Wheels",
     title: "Top Hikes in Nyeri",
     dateCreated: "21 September 2025",
     tags: ["fun, adventure"], // fun, enginerring, adventure, ...
@@ -91,7 +91,7 @@ export const blogs = [
   {
     id: 6, // link to blog content
     image: "bike-riding.jpg",
-    topic: "Life on Wheels",
+    topic: "Life On Wheels",
     title: "Top Hikes in Nyeri",
     dateCreated: "21 March 2025",
     tags: ["fun, adventure, hiking"], // fun, enginerring, adventure, ...
@@ -124,7 +124,7 @@ export const blogs = [
   {
     id: 9, // link to blog content
     image: "bike-riding.jpg",
-    topic: "Life on Wheels",
+    topic: "Life On Wheels",
     title: "Top Hikes in Nyeri",
     dateCreated: "21 March 2025",
     tags: ["fun"], // fun, enginerring, adventure, ...
@@ -160,7 +160,7 @@ export const drafts = [
   {
     id: 0, // link to blog content
     image: "bike-riding.jpg",
-    topic: "Life on Wheels",
+    topic: "Life On Wheels",
     title: "Top Hikes in Nyeri",
     dateCreated: "21 March 2025",
     tags: ["fun, adventure, hiking"], // fun, enginerring, adventure, ...
@@ -196,7 +196,7 @@ export const drafts = [
   {
     id: 3, // link to blog content
     image: "bike-riding.jpg",
-    topic: "Life on Wheels",
+    topic: "Life On Wheels",
     title: "Top Hikes in Nyeri",
     dateCreated: "21 September 2025",
     tags: ["fun, adventure"], // fun, enginerring, adventure, ...
@@ -232,7 +232,7 @@ export const drafts = [
   {
     id: 6, // link to blog content
     image: "bike-riding.jpg",
-    topic: "Life on Wheels",
+    topic: "Life On Wheels",
     title: "Top Hikes in Nyeri",
     dateCreated: "21 March 2025",
     tags: ["fun, adventure, hiking"], // fun, enginerring, adventure, ...
@@ -268,7 +268,7 @@ export const drafts = [
   {
     id: 9, // link to blog content
     image: "bike-riding.jpg",
-    topic: "Life on Wheels",
+    topic: "Life On Wheels",
     title: "Top Hikes in Nyeri",
     dateCreated: "21 March 2025",
     tags: ["fun"], // fun, enginerring, adventure, ...
@@ -347,7 +347,7 @@ export const tags = [
 
 export const milestones = [
   {
-    topic: "life on wheels",
+    topic: "Life On Wheels",
     milestones: [
       {
         id: 0,

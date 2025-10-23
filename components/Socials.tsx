@@ -22,7 +22,7 @@ const socials = [
 
 export default function Socials() {
   return (
-    <div className="fixed grid gap-[10px] justify-center p-[10px] w-[30px] min-h-[100px] bg-(--primary-blue) rounded-tl-[10px] rounded-bl-[10px] right-0 top-[100px] text-(--secondary-blue) text-[20px]">
+    <div className="fixed grid gap-[10px] justify-center p-[10px] w-[30px] min-h-[100px] bg-(--primary-blue) rounded-tl-[10px] rounded-bl-[10px] right-0 top-[100px] text-(--secondary-blue) text-[20px] z-10">
       {socials.map((social, idx) => (
         <Link key={idx} href={`${social.socialHandle}`}>
           <FontAwesomeIcon

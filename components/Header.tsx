@@ -1,18 +1,20 @@
 "use client";
 import "@l/icons";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Login from "./Login";
 
 export default function Header() {
+  const router = useRouter();
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const themeModeBtn = useRef<HTMLLIElement | null>(null);
   const themeModeToggle = useRef<HTMLDivElement | null>(null);
   const [theme, setTheme] = useState<"light" | "dark">("light");
 
   const location = usePathname();
-
-  console.log(location);
 
   function applyToggleStyles(
     t: "light" | "dark",
@@ -81,16 +83,28 @@ export default function Header() {
     name: topicNames[index],
   }));
 
+  useEffect(() => {
+    console.log(isLoggedIn);
+  }, [isLoggedIn]);
+
   return (
     <div className="flex w-full h-[40px] mt-[10px] relative items-center mb-[20px]">
+      {isLoggedIn ? <Login setIsLoggedIn={setIsLoggedIn} /> : ""}
       <div
         className={`${
           location === "/" ? "translate-x-[250px]" : "translate-x-[165px]"
         }`}
       >
-        <Link href="/">
-          <div className="section-title">Bernard Kuria</div>
-        </Link>
+        <button
+          onClick={() => {
+            return location === "/"
+              ? setIsLoggedIn((prev) => !prev)
+              : router.push("/");
+          }}
+          className="section-title cursor-pointer"
+        >
+          Bernard Kuria
+        </button>
         <div className="font-bold">
           {(() => {
             const match = topics.find((topic) =>
