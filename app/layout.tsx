@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${mulish.variable} ${lexend.variable} antialiased min-h-screen transition-colors duration-500 pb-[30px]`}
+        className={`${mulish.variable} ${lexend.variable} antialiased w-full min-h-screen transition-colors duration-500 pb-[30px]`}
       >
         <Header />
         <Socials />

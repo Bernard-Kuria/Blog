@@ -16,9 +16,6 @@
   --color-foreground: var(--foreground);
   --border-color: var(--secondary-blue);
 
-  --font-inter: var(--font-inter);
-  --font-merriweather: var(--font-merriweather);
-  --font-fira: var(--font-fira);
   --font-mulish: var(--font-mulish);
   --font-lexend: var(--font-lexend);
 }
@@ -84,7 +81,7 @@ body {
 }
 
 .page-layout {
-  @apply w-[1035px];
+  @apply w-[1035px] mx-auto;
 }
 
 .section-title {

@@ -31,7 +31,6 @@ export const blogs = [
     tags: ["fun, adventure, hiking"], // fun, enginerring, adventure, ...
     likes: 12,
     comments: 2,
-    shares: 1,
     views: 210,
   },
   {
@@ -43,7 +42,6 @@ export const blogs = [
     tags: [""],
     likes: 0,
     comments: 0,
-    shares: 0,
     views: 0,
   },
   {
@@ -55,7 +53,6 @@ export const blogs = [
     tags: [""],
     likes: 0,
     comments: 0,
-    shares: 0,
     views: 0,
   },
   {
@@ -67,7 +64,6 @@ export const blogs = [
     tags: ["fun, adventure"], // fun, enginerring, adventure, ...
     likes: 6,
     comments: 2,
-    shares: 1,
     views: 89,
   },
   {
@@ -79,7 +75,6 @@ export const blogs = [
     tags: [""],
     likes: 0,
     comments: 0,
-    shares: 0,
     views: 0,
   },
   {
@@ -91,7 +86,6 @@ export const blogs = [
     tags: [""],
     likes: 0,
     comments: 0,
-    shares: 0,
     views: 0,
   },
   {
@@ -103,7 +97,6 @@ export const blogs = [
     tags: ["fun, adventure, hiking"], // fun, enginerring, adventure, ...
     likes: 18,
     comments: 4,
-    shares: 2,
     views: 301,
   },
   {
@@ -115,7 +108,6 @@ export const blogs = [
     tags: [""],
     likes: 0,
     comments: 0,
-    shares: 0,
     views: 0,
   },
   {
@@ -127,7 +119,6 @@ export const blogs = [
     tags: [""],
     likes: 0,
     comments: 0,
-    shares: 0,
     views: 0,
   },
   {
@@ -139,7 +130,6 @@ export const blogs = [
     tags: ["fun"], // fun, enginerring, adventure, ...
     likes: 2,
     comments: 0,
-    shares: 0,
     views: 13,
   },
   {
@@ -151,7 +141,6 @@ export const blogs = [
     tags: [""],
     likes: 0,
     comments: 0,
-    shares: 0,
     views: 0,
   },
   {
@@ -163,7 +152,6 @@ export const blogs = [
     tags: [""],
     likes: 0,
     comments: 0,
-    shares: 0,
     views: 0,
   },
 ];

@@ -1,11 +1,26 @@
-import { useRef } from "react";
-import { handleThemeBtnClick } from "../../lib/utils/DraftifyHooks/ToolBarHooks/ToggleEffects";
-import { handleDownloadJSON } from "../../lib/utils/DraftifyHooks/ToolBarHooks/ToolBarInteractions";
+"use client";
+
+import { useRef, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { handleThemeBtnClick } from "../../utils/DraftifyHooks/ToolBarHooks/ToggleEffects";
+import {
+  handleDownloadJSON,
+  handleCopy,
+  exportBlocksToDocx,
+} from "../../utils/DraftifyHooks/ToolBarHooks/ToolBarInteractions";
+
 export default function ToolBar({ view, setView, blocksData }) {
+  const [copy, setCopy] = useState(false);
   const themeModeBtn = useRef(null);
   const themeModeToggle = useRef(null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setCopy(false);
+    }, 3000);
+  }, [copy]);
+
   return (
     <div className="md:h-[40px]">
       <div className="relative grid md:flex items-center text-[12px] italic gap-[10px]">
@@ -22,6 +37,22 @@ export default function ToolBar({ view, setView, blocksData }) {
           >
             Download JSON <FontAwesomeIcon icon={["fas", "download"]} />
           </button>
+          <button
+            className="border rounded-[10px] bg-(--secondary-blue) text-white hover:font-semibold hover:bg-(--primary-blue) p-1 cursor-pointer"
+            onClick={() => exportBlocksToDocx(blocksData)}
+          >
+            Export .docx <FontAwesomeIcon icon={["fas", "download"]} />
+          </button>
+          <div
+            className={`p-1 cursor-pointer ${
+              copy ? "text-green-400" : "text-(--secondary-blue)"
+            }`}
+          >
+            <FontAwesomeIcon
+              icon={["fas", `${copy ? "check" : "copy"}`]}
+              onClick={() => handleCopy(blocksData, setCopy)}
+            />
+          </div>
           <div
             ref={themeModeBtn}
             className="border w-[30px] h-[16px] rounded-[16px] cursor-pointer duration-300 flex items-center p-[0px]"

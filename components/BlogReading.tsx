@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function BlogArea() {
   return (
-    <div className="flex flex-col gap-[20px] page-layout h-[1170px] p-[100px] bg-white dark:bg-black blog-text">
+    <div className="flex flex-col gap-[20px] h-[1170px] p-[100px] bg-white dark:bg-black blog-text">
       <div className="flex detail-text">
         <div className="flex gap-[10px]">
           <div>Mar 21, 2023</div>

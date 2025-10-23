@@ -38,6 +38,8 @@ import {
   faRefresh,
   // Socials icons
   faGlobe,
+  faCopy,
+  faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faGem,
@@ -131,5 +133,7 @@ library.add(
   faYoutube,
   faGithub,
   faXTwitter,
-  faFacebookF
+  faFacebookF,
+  faCopy,
+  faCheck
 );

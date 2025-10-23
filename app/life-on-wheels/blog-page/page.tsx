@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function BlogPage() {
   return (
-    <div className="grid justify-center gap-[30px]">
+    <div className="page-layout grid gap-[30px]">
       <Link className="cursor-pointer w-fit" href={"../life-on-wheels"}>
         &larr; Back
       </Link>

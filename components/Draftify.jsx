@@ -2,7 +2,7 @@
 
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import EditBlock from "./DraftifyProComponents/EditBlock";
@@ -12,10 +12,11 @@ import ToolBar from "./DraftifyProComponents/ToolBar";
 import Grabber from "./DraftifyProComponents/Grabber";
 import BackGround from "./DraftifyProComponents/Background";
 
-import { useDraftify } from "../lib/utils/useDraftify";
-import { useGenerateGrid } from "../lib/utils/DraftifyHooks/BackgroundHooks/backGroundEffects";
+import { useDraftify } from "../utils/useDraftify";
+import { useGenerateGrid } from "../utils/DraftifyHooks/BackgroundHooks/backGroundEffects";
 
 export default function Draftify() {
+  const [mounted, setMounted] = useState(false);
   const [view, setView] = useState("editor");
   const [gridDots, setGridDots] = useState([]);
 
@@ -36,7 +37,13 @@ export default function Draftify() {
     whileHover,
   } = useDraftify([]);
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useGenerateGrid(setGridDots);
+
+  if (!mounted) return null;
 
   return (
     <>
