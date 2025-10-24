@@ -478,80 +478,78 @@ export const comments = [
   },
 ];
 
-export const tags = [
-  {
-    "life on wheels": [
-      {
-        id: 0,
-        tagName: "thrilling",
-      },
-      {
-        id: 1,
-        tagName: "risk taking",
-      },
-      {
-        id: 2,
-        tagName: "adventure",
-      },
-      {
-        id: 3,
-        tagName: "life",
-      },
-      {
-        id: 4,
-        tagName: "fun",
-      },
-    ],
-    "Startups & Ideas": [
-      {
-        id: 0,
-        tagName: "engineering",
-      },
-      {
-        id: 1,
-        tagName: "tech",
-      },
-      {
-        id: 2,
-        tagName: "startups",
-      },
-      {
-        id: 3,
-        tagName: "success",
-      },
-      {
-        id: 4,
-        tagName: "risk taking",
-      },
-    ],
-    "Projects & Tech": [
-      {
-        id: 0,
-        tagName: "engineering",
-      },
-      {
-        id: 1,
-        tagName: "tech",
-      },
-      {
-        id: 2,
-        tagName: "IOT",
-      },
-      {
-        id: 3,
-        tagName: "embedded systems",
-      },
-      {
-        id: 4,
-        tagName: "pcb",
-      },
-      {
-        id: 5,
-        tagName: "arduino",
-      },
-    ],
-  },
-];
+export const tags = {
+  "life on wheels": [
+    {
+      id: 0,
+      tagName: "thrilling",
+    },
+    {
+      id: 1,
+      tagName: "risk taking",
+    },
+    {
+      id: 2,
+      tagName: "adventure",
+    },
+    {
+      id: 3,
+      tagName: "life",
+    },
+    {
+      id: 4,
+      tagName: "fun",
+    },
+  ],
+  "Startups & Ideas": [
+    {
+      id: 0,
+      tagName: "engineering",
+    },
+    {
+      id: 1,
+      tagName: "tech",
+    },
+    {
+      id: 2,
+      tagName: "startups",
+    },
+    {
+      id: 3,
+      tagName: "success",
+    },
+    {
+      id: 4,
+      tagName: "risk taking",
+    },
+  ],
+  "Projects & Tech": [
+    {
+      id: 0,
+      tagName: "engineering",
+    },
+    {
+      id: 1,
+      tagName: "tech",
+    },
+    {
+      id: 2,
+      tagName: "IOT",
+    },
+    {
+      id: 3,
+      tagName: "embedded systems",
+    },
+    {
+      id: 4,
+      tagName: "pcb",
+    },
+    {
+      id: 5,
+      tagName: "arduino",
+    },
+  ],
+};
 
 export const milestones = [
   {

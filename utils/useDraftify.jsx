@@ -7,6 +7,7 @@ import { newContentTable } from "./DraftifyHooks/tableHooks/tableInteractions";
 
 export function useDraftify(initialBlocks = []) {
   const [blocksData, setBlocksData] = useState(() => {
+    console.log(initialBlocks);
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("blocksData");
       return saved ? JSON.parse(saved) : initialBlocks;

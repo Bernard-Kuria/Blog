@@ -1,6 +1,5 @@
 "use client";
 
-// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,7 +14,7 @@ import BackGround from "./DraftifyProComponents/Background";
 import { useDraftify } from "../utils/useDraftify";
 import { useGenerateGrid } from "../utils/DraftifyHooks/BackgroundHooks/backGroundEffects";
 
-export default function Draftify() {
+export default function Draftify({ data }) {
   const [mounted, setMounted] = useState(false);
   const [view, setView] = useState("editor");
   const [gridDots, setGridDots] = useState([]);
@@ -35,7 +34,9 @@ export default function Draftify() {
     itemVariants,
     transitions,
     whileHover,
-  } = useDraftify([]);
+  } = useDraftify(data);
+
+  console.log(blocksData);
 
   useEffect(() => {
     setMounted(true);

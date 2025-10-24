@@ -18,11 +18,12 @@ export default function Dashboard() {
                 .filter((blog) => blog.topic === topic.title)
                 .map((blog) => {
                   return (
-                    <div key={blog.id} className="flex gap-[10px] items-center">
+                    <div
+                      key={blog.id}
+                      className="w-full flex justify-between gap-[10px] items-center"
+                    >
                       <BlogsList blog={blog} />
-                      <div className="w-[12px] h-[12px]">
-                        <FontAwesomeIcon icon={["fas", "trash"]} />
-                      </div>
+                      <FontAwesomeIcon icon={["fas", "trash"]} />
                     </div>
                   );
                 })}

@@ -7,17 +7,3 @@ export type linesTypes = {
   color: string;
   angle: string;
 };
-
-export type blog = {
-  id: number;
-  image: string;
-  topic: string;
-  title: string;
-  dateCreated: string;
-  tags: string[]; // fun, enginerring, adventure, ...
-  likes: number;
-  comments: number;
-  views: number;
-};
-
-export type blogsType = blog[];
