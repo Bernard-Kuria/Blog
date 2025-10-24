@@ -61,6 +61,7 @@ import {
   faHeadphones,
   faThumbsUp,
   faImage,
+  faComment,
 } from "@fortawesome/free-regular-svg-icons";
 
 import {
@@ -135,5 +136,7 @@ library.add(
   faXTwitter,
   faFacebookF,
   faCopy,
-  faCheck
+  faCheck,
+  faEye,
+  faComment
 );

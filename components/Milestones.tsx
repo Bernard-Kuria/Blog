@@ -1,18 +1,13 @@
 "use client";
 import { milestones } from "@lib/mock-data";
-import { usePathname } from "next/navigation";
 
-export default function Milestones() {
-  const location = usePathname();
-
-  const targetMilestones = location
-    .slice(1)
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-
+export default function Milestones({
+  topic = "",
+}: {
+  topic: string | undefined;
+}) {
   const topicMilestones = milestones.find((m) => {
-    if (m.topic === targetMilestones) return m.milestones;
+    if (m.topic === topic) return m.milestones;
   });
 
   return (

@@ -94,15 +94,18 @@ body {
 }
 
 .heading {
-  @apply w-full outline-none text-2xl font-semibold;
+  font-family: var(--font-lexend);
+  @apply w-full outline-none text-[32px] font-semibold;
 }
 
 .subheading {
-  @apply w-full outline-none text-[20px] font-semibold;
+  font-family: var(--font-lexend);
+  @apply w-full outline-none text-[24px] font-medium;
 }
 
 .paragraph {
-  @apply w-full h-fit outline-none;
+  font-family: var(--font-mulish);
+  @apply w-full h-fit outline-none text-[16px] font-normal;
 }
 
 .quote {

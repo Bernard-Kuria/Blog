@@ -11,7 +11,7 @@ export default function ParagraphEditor({ block, onChange }) {
 
 export function ParagraphOutput({ block }) {
   return (
-    <p key={block.id} className="paragraph">
+    <p key={block.id} className="flex-1 paragraph">
       {block.content}
     </p>
   );

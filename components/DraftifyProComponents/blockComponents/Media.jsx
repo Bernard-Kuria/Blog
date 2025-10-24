@@ -121,7 +121,7 @@ function RefreshBbutton({ setFile, setFileName }) {
 
 export function ImageOutput({ block }) {
   return (
-    <div key={block.id} className="border p-2">
+    <div key={block.id} className="relative w-full h-[400px]">
       <img src={block.content} alt="" className="media" />
     </div>
   );
@@ -129,7 +129,7 @@ export function ImageOutput({ block }) {
 
 export function MediaOutput({ block }) {
   return (
-    <div key={block.id} className="border p-2 media">
+    <div key={block.id} className="relative w-full h-[400px] media">
       {block.content && (
         <video autoPlay muted controls>
           <source src={block.content} type="video/mp4" />

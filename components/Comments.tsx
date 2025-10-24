@@ -1,13 +1,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function Comments() {
+import { comments } from "@lib/mock-data";
+
+export default function Comments({ blogId }: { blogId: string }) {
   return (
     <div className="detail-text grid gap-[10px]">
-      <strong>Comments</strong>
+      <strong>Comments (Anonymous)</strong>
       <div className="grid gap-[20px]">
         <EditComment />
-        <Comment />
-        <Comment />
+        {comments.map((c, id) =>
+          c.id === blogId ? <Comment key={id} comment={c} /> : null
+        )}
       </div>
       <div className="text-(--primary-blue)">view more</div>
     </div>
@@ -27,14 +30,16 @@ function EditComment() {
   );
 }
 
-function Comment() {
+type commentProps = { id: string; comment: string; likes: number };
+
+function Comment({ comment }: { comment: commentProps }) {
   return (
     <div className="flex gap-[20px]">
       <div className="w-[14px] h-full bg-(--secondary-blue)"></div>
       <div className="grid gap-[10px] bg-white dark:bg-black w-full p-2">
-        <div className="">Great Post</div>
+        <div className="">{comment.comment}</div>
         <div className="flex gap-[10px] items-center">
-          1{" "}
+          {comment.likes}{" "}
           <FontAwesomeIcon className="icon-size" icon={["far", "thumbs-up"]} />
         </div>
       </div>

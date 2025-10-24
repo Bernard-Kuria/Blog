@@ -7,6 +7,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Login from "./Login";
 
+import { blogTopics } from "@lib/mock-data";
+
 export default function Header() {
   const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -71,21 +73,15 @@ export default function Header() {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   }
 
-  const topicLinks = ["projects-&-tech", "startups-&-ideas", "life-on-wheels"];
-  const topicNames = topicLinks.map((topic) => {
-    const words = topic.split("-").map((word) => {
-      return word.charAt(0).toUpperCase() + word.slice(1);
-    });
-    return words.join(" ");
-  });
+  const topicNames = blogTopics.map((b) => b.title);
+  const topicLinks = topicNames.map((topic) =>
+    topic.toString().toLowerCase().split(" ").join("-")
+  );
+
   const topics = topicLinks.map((link, index) => ({
     link,
     name: topicNames[index],
   }));
-
-  useEffect(() => {
-    console.log(isLoggedIn);
-  }, [isLoggedIn]);
 
   return (
     <div className="flex w-full h-[40px] mt-[10px] relative items-center mb-[20px]">
@@ -124,10 +120,10 @@ export default function Header() {
             <Link href="https://bernard-webfolio.web.app/">About Me</Link>
           </li>
           <li className="group relative">
-            <Link href="">Topics</Link>
+            Topics
             <ul className="absolute min-w-[150px] hidden gap-1 pt-[12px] -translate-x-[30px] group-hover:grid hover:grid z-1">
               {topics.map((topic, index) => (
-                <Link href={topic.link} key={index}>
+                <Link href={"/" + topic.link} key={index}>
                   <li className="border border-(--border-color) rounded-[5px] p-1 bg-(--background) hover:bg-(--secondary-blue) hover:text-black">
                     {topic.name}
                   </li>

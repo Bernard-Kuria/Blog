@@ -257,46 +257,33 @@ export const blogContent = [
     blog: [
       {
         id: "gRmBXRvZa5H8SKHXh-Jkz",
-        type: "Nyeri hills is not for the weak 😂",
-        content: "This is a heading.",
+        type: "heading",
+        content: "Nyeri hills is not for the weak 😂",
         tableContent: null,
       },
       {
         id: "gRmBXRdgksH8SKHXh-Jkz",
         type: "subheading",
-        content: "This is a sub-heading.",
-        tableContent: null,
-      },
-      {
-        id: "-7TXITVxUTCp_cFJgl9kN",
-        type: "paragraph",
-        content: "This is a text area/paragraph.",
-        tableContent: null,
-      },
-      {
-        id: "Eg7peEZkC--hf_XvNQyY0",
-        type: "media",
-        content:
-          "blob:https://draftify-pro.vercel.app/faf39e5d-8697-4070-a0d8-cbdd36fc4659",
-        tableContent: null,
-      },
-      {
-        id: "9OFqzjt5oWGO9yZP9n_Mr",
-        type: "quote",
-        content: "A quote",
+        content: "As we say in swahili `Hapa huezitoboa` with an average bike.",
         tableContent: null,
       },
       {
         id: "gDPqBecANenoEIIgyIpJD",
         type: "image",
-        content:
-          "blob:https://draftify-pro.vercel.app/b81e2739-5a81-4cb5-9a60-ad292b721996",
+        content: "/assets/blogImg/bike-riding.jpg",
         tableContent: null,
       },
       {
-        id: "NTvvAT9O2uFRbcd1CjsIA",
-        type: "link",
-        content: "Here's a link.",
+        id: "9OFqzjt5oWGO9yZP9n_Mr",
+        type: "quote",
+        content: "The closer you think you're getting, the further it becomes.",
+        tableContent: null,
+      },
+      {
+        id: "-7TXITVxUTCp_cFJgl9kN",
+        type: "paragraph",
+        content:
+          "Welcome to your blog post. Use this space to connect with your readers and potential customers in a way that’s current and interesting. Think of it as an ongoing conversation where you can share updates about business, trends, news, and more “Do you have a design in mind for your blog? Whether you prefer a trendy postcard look or you’re going for a more editorial style blog - there’s a stunning layout for everyone.” You’ll be posting loads of engaging content, so be sure to keep your blog organized with Categories that also allow visitors to explore more of what interests them. Create Relevant Content Writing a blog is a great way to position yourself as an authority in your field and captivate your readers’ attention. Do you want to improve your site’s SEO ranking? Consider topics that focus on relevant keywords and relate back to your website or business. You can also add hashtags (#vacation #dream #summer) throughout your posts to reach more people, and help visitors search for relevant content. Blogging gives your site a voice, so let your business’ personality shine through. Choose a great image to feature in your post or add a video for extra engagement. Are you ready to get started? Simply create a new post now.",
         tableContent: null,
       },
     ],
@@ -380,8 +367,10 @@ export const blogs = [
     image: "bike-riding.jpg",
     topic: "Projects & Tech",
     title: "Self balancing robot",
+    subtitle: "This is a sub-heading.",
     dateCreated: "21 March 2025",
     tags: ["fun, adventure, hiking"],
+    minsRead: 2,
     likes: 12,
     comments: 2,
     views: 210,
@@ -391,8 +380,10 @@ export const blogs = [
     image: "bike-riding.jpg",
     topic: "Startups & Ideas",
     title: "E-Nexus",
-    dateCreated: "21 March 2025",
+    subtitle: "This is a sub-heading.",
+    dateCreated: "28 March 2025",
     tags: ["conservation", "innovation", "tech"],
+    minsRead: 2,
     likes: 0,
     comments: 0,
     views: 0,
@@ -402,8 +393,11 @@ export const blogs = [
     image: "bike-riding.jpg",
     topic: "Life On Wheels",
     title: "Top Hikes in Nyeri",
-    dateCreated: "21 March 2025",
+    subtitle:
+      "This is a sub-heading that summarizes my post in a few short, punchy sentences and entices my audience to continue reading...",
+    dateCreated: "14 April 2024",
     tags: ["adventure", "thrill"],
+    minsRead: 2,
     likes: 0,
     comments: 0,
     views: 0,
@@ -413,8 +407,10 @@ export const blogs = [
     image: "bike-riding.jpg",
     topic: "Projects & Tech",
     title: "Data Logging System",
-    dateCreated: "21 September 2025",
+    subtitle: "This is a sub-heading.",
+    dateCreated: "21 September 2024",
     tags: ["IOT", "RaspberryPi"],
+    minsRead: 2,
     likes: 6,
     comments: 2,
     views: 89,
@@ -424,12 +420,20 @@ export const blogs = [
     image: "bike-riding.jpg",
     topic: "Life On Wheels",
     title: "Nyeri hills is not for the weak 😂",
-    dateCreated: "21 March 2025",
+    subtitle: "This is a sub-heading.",
+    dateCreated: "12 Dec 2025",
     tags: ["fun", "exercise"],
+    minsRead: 2,
     likes: 3,
     comments: 0,
     views: 5,
   },
+];
+
+export const featuredBlog = [
+  { id: "gRmBXRvZa5H8SKHXh-Jkz", topic: "Projects & Tech" },
+  { id: "-7TXITVxUTCp_cFJgl9kN", topic: "Startups & Ideas" },
+  { id: "Eg7peEZkC--hf_XvNQyY0", topic: "Life On Wheels" },
 ];
 
 export const drafts = [
@@ -453,20 +457,24 @@ export const drafts = [
 
 export const comments = [
   {
-    id: 0,
+    id: "gRmBXRvZa5H8SKHXh-Jkz",
     comment: "Great stuff!",
+    likes: 1,
   },
   {
-    id: 1,
+    id: "gRmBXRvZa5H8SKHXh-Jkz",
     comment: "Love it",
+    likes: 1,
   },
   {
-    id: 2,
+    id: "9OFqzjt5oWGO9yZP9n_Mr",
     comment: "Great stuff!",
+    likes: 1,
   },
   {
-    id: 3,
+    id: "9OFqzjt5oWGO9yZP9n_Mr",
     comment: "Love it",
+    likes: 1,
   },
 ];
 

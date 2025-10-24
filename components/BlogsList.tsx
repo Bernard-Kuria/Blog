@@ -1,13 +1,43 @@
-type BlogsListProps = {
-  title?: string;
-  subtitle?: string;
+import { FontAwesomeIcon } from "@node_modules/@fortawesome/react-fontawesome/dist";
+
+type Blog = {
+  id: string;
+  image: string;
+  topic: string;
+  title: string;
+  subtitle: string;
+  dateCreated: string;
+  tags: string[];
+  likes: number;
+  comments: number;
+  views: number;
 };
 
-export default function BlogsList({ title, subtitle }: BlogsListProps) {
+type BlogProps = { blog: Blog };
+
+export default function BlogsList({ blog }: BlogProps) {
+  const { views, comments, likes } = blog;
   return (
-    <div className="border rounded-[10px] w-full grid gap-[15px] p-5">
-      <div className="sub-title">{title}</div>
-      <div className="blog-font grid grid-cols-3 gap-[20px]">{subtitle}</div>
+    <div className="flex gap-[10px] border rounded-[10px] w-full p-5">
+      <div className="flex-1 flex flex-col gap-[15px]">
+        <div className="sub-title">{blog.title}</div>
+        <div className="flex-1 blog-font grid grid-cols-3 gap-[20px]">
+          {blog.subtitle}
+        </div>
+      </div>
+      <div className="flex justify-between items-center w-56 h-[15px]">
+        <div className="flex gap-[10px]">
+          <FontAwesomeIcon icon={["far", "eye"]} className="w-[15px]" /> {views}
+        </div>
+        <div className="flex gap-[10px]">
+          <FontAwesomeIcon icon={["far", "comment"]} className="w-[15px]" />
+          {comments}
+        </div>
+        <div className="flex gap-[10px]">
+          <FontAwesomeIcon icon={["far", "heart"]} className="w-[15px]" />{" "}
+          {likes}
+        </div>
+      </div>
     </div>
   );
 }
