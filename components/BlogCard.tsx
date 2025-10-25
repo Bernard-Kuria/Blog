@@ -23,7 +23,7 @@ export default function BlogCards({
     >
       <div className="border flex flex-col justify-between border-gray-400 h-fit">
         <div className="relative h-[250px]">
-          <Image src={`${blog.image}`} alt="" layout="fill" />
+          <Image src={`${blog.image}`} alt="" fill />
         </div>
         <div className="grid gap-[10px] p-[20px]">
           <div className="h-[65px] overflow-hidden sub-title text-(--primary-blue)">

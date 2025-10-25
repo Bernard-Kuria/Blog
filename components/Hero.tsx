@@ -51,7 +51,7 @@ export default function Hero() {
         <Image
           src={`${homePageImages()[0]}`}
           alt="chill image"
-          layout="fill"
+          fill
           className="object-cover object-[0%_40%]"
         />
       </div>
@@ -63,7 +63,7 @@ export default function Hero() {
             <Image
               src={`${homePageImages()[1]}`}
               alt="chill image"
-              layout="fill"
+              fill
               className="object-cover object-[0%_40%]"
             />
           </div>
@@ -77,7 +77,7 @@ export default function Hero() {
             <Image
               src={`${homePageImages()[2]}`}
               alt="chill image"
-              layout="fill"
+              fill
               className="object-cover object-[0%_40%]"
             />
           </div>

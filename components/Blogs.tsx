@@ -40,7 +40,7 @@ export default function Blogs({ link, imageUrl, topic, timeStamp }: BlogProps) {
               <Image
                 src={`${imageUrl}`}
                 alt="image"
-                layout="fill"
+                fill
                 className="object-cover"
               />
             </div>

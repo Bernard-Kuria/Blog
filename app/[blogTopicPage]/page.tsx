@@ -31,7 +31,7 @@ export default function Page({
         <Image
           src={`${topic?.image}`}
           alt={topic?.title || "Topic Image"}
-          layout="fill"
+          fill
           objectFit="cover"
           priority
         />
