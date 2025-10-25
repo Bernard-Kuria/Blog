@@ -5,22 +5,9 @@ import { usePathname } from "next/navigation";
 
 import { FontAwesomeIcon } from "@node_modules/@fortawesome/react-fontawesome/dist";
 
-type Blog = {
-  id: string;
-  image: string;
-  topic: string;
-  title: string;
-  subtitle: string;
-  dateCreated: string;
-  tags: string[];
-  likes: number;
-  comments: number;
-  views: number;
-};
+import { Blog } from "@lib/types";
 
-type BlogProps = { blog: Blog };
-
-export default function BlogsList({ blog }: BlogProps) {
+export default function BlogsList({ blog }: { blog: Blog }) {
   const location = usePathname();
   const { views, comments, likes, id } = blog;
   return (
@@ -31,15 +18,15 @@ export default function BlogsList({ blog }: BlogProps) {
           <div className="blog-font">{blog.subtitle}</div>
         </div>
         <div className="flex justify-between items-center w-56 h-[15px]">
-          <div className="flex gap-[10px]">
+          <div className="flex items-center gap-[10px]">
             <FontAwesomeIcon icon={["far", "eye"]} className="w-[15px]" />{" "}
             {views}
           </div>
-          <div className="flex gap-[10px]">
+          <div className="flex items-center gap-[10px]">
             <FontAwesomeIcon icon={["far", "comment"]} className="w-[15px]" />
             {comments}
           </div>
-          <div className="flex gap-[10px]">
+          <div className="flex items-center gap-[10px]">
             <FontAwesomeIcon icon={["far", "heart"]} className="w-[15px]" />{" "}
             {likes}
           </div>

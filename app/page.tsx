@@ -5,7 +5,10 @@ import { usePathname } from "next/navigation";
 import Blogs from "@components/Blogs";
 import Hero from "@c/Hero";
 
-import { blogTopics } from "@lib/mock-data";
+import {
+  getLinkFromTopic,
+  getAllTopicsGeneralInfo,
+} from "@utils/FrontEndHooks/DataProcessing";
 
 export default function Home() {
   const location = usePathname();
@@ -20,12 +23,11 @@ export default function Home() {
       >
         {location === "/" ? "Browse" : "Other"} Topics
         <div className="flex flex-wrap gap-[20px]">
-          {blogTopics.map((b) => {
-            const link = b.title.toLowerCase().split(" ").join("-");
+          {getAllTopicsGeneralInfo().map((b) => {
+            const link = getLinkFromTopic(b.title);
             return (
               <Blogs
                 key={b.id}
-                type={b.title.toLocaleLowerCase().split("-").join("-")}
                 link={link}
                 imageUrl={b.image}
                 topic={b.title}

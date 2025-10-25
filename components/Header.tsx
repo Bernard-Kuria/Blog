@@ -5,9 +5,15 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
 import Login from "./Login";
 
-import { blogTopics } from "@lib/mock-data";
+import { applyToggleStyles } from "@utils/FrontEndHooks/UIhooks";
+
+import {
+  getLinkFromTopic,
+  getAllTopicsGeneralInfo,
+} from "@utils/FrontEndHooks/DataProcessing";
 
 export default function Header() {
   const router = useRouter();
@@ -17,25 +23,6 @@ export default function Header() {
   const [theme, setTheme] = useState<"light" | "dark">("light");
 
   const location = usePathname();
-
-  function applyToggleStyles(
-    t: "light" | "dark",
-    btn: HTMLLIElement | null,
-    toggle: HTMLDivElement | null
-  ) {
-    if (!btn || !toggle) return;
-    if (t === "dark") {
-      btn.style.borderColor = "#f4f5f0";
-      btn.style.backgroundColor = "#232323";
-      toggle.style.backgroundColor = "#f4f5f0";
-      toggle.style.transform = "translateX(15px)";
-    } else {
-      btn.style.borderColor = "#232323";
-      btn.style.backgroundColor = "#f4f5f0";
-      toggle.style.backgroundColor = "#232323";
-      toggle.style.transform = "translateX(1px)";
-    }
-  }
 
   // mount: determine initial theme and set toggle position immediately
   useEffect(() => {
@@ -73,9 +60,9 @@ export default function Header() {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   }
 
-  const topicNames = blogTopics.map((b) => b.title);
+  const topicNames = getAllTopicsGeneralInfo().map((b) => b.title);
   const topicLinks = topicNames.map((topic) =>
-    topic.toString().toLowerCase().split(" ").join("-")
+    getLinkFromTopic(topic.toString())
   );
 
   const topics = topicLinks.map((link, index) => ({

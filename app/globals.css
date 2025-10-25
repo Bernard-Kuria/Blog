@@ -88,6 +88,10 @@ body {
   @apply text-(--secondary-blue) text-2xl font-medium;
 }
 
+.button {
+  @apply bg-(--secondary-blue) text-(--primary-blue) hover:bg-(--primary-blue) hover:text-(--secondary-blue) rounded-[10px] p-2 h-fit cursor-pointer;
+}
+
 /* Draftify Styles */
 .logo-text {
   @apply bg-gradient-to-br from-blue-800 to-purple-500 bg-clip-text text-transparent;

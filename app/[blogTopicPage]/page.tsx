@@ -1,14 +1,19 @@
 "use client";
 import { use } from "react";
 
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 import FeaturedBlog from "@c/FeaturedBlog";
 import Milestones from "@c/Milestones";
 import Blogs from "@c/Blogs";
 import BlogCards from "@c/BlogCard";
 
-import { blogTopics, blogs } from "@lib/mock-data";
+import {
+  filterBlogsBy,
+  getLinkFromTopic,
+  getTopicMatchingPage,
+  getAllTopicsGeneralInfo,
+} from "@utils/FrontEndHooks/DataProcessing";
 
 export default function Page({
   params,
@@ -16,26 +21,15 @@ export default function Page({
   params: Promise<{ blogTopicPage: string }>;
 }) {
   const { blogTopicPage } = use(params);
-
-  // Find the matching topic by blogTopicPage
-  const topic = blogTopics.find(
-    (t) =>
-      t.title.split(" ").join("-").toLowerCase() ===
-      blogTopicPage
-        .split("-")
-        .map((char) => (char === "%26" ? "&" : char))
-        .join("-")
-  );
-
-  // Filter all blogs that belong to this topic
-  const targetBlogs = blogs.filter((blog) => blog.topic === topic?.title);
+  const topic = getTopicMatchingPage(blogTopicPage);
+  const targetBlogs = filterBlogsBy("topic", topic?.title || "");
 
   return (
     <div className="relative flex flex-col gap-[20px] w-full">
       {/* Background Image */}
       <div className="absolute w-full h-[calc(100vh-70px)]">
         <Image
-          src={`/assets/blogTopicImg/${topic?.image}`}
+          src={`${topic?.image}`}
           alt={topic?.title || "Topic Image"}
           layout="fill"
           objectFit="cover"
@@ -58,20 +52,22 @@ export default function Page({
 
       <Milestones topic={topic?.title} />
 
-      <div className="page-layout flex flex-wrap gap-[20px]">
-        {blogTopics.map((b) => {
-          const link = b.title.toLocaleLowerCase().split(" ").join("-");
-          return blogTopicPage !== link ? (
-            <Blogs
-              key={b.id}
-              type={"topic"}
-              link={link}
-              imageUrl={b.image}
-              topic={b.title}
-              timeStamp={b.timeStamp}
-            />
-          ) : null;
-        })}
+      <div className="page-layout">
+        <strong>Explore More Topics:</strong>
+        <div className="flex flex-wrap gap-[20px]">
+          {getAllTopicsGeneralInfo().map((b) => {
+            const link = getLinkFromTopic(b.title);
+            return blogTopicPage !== link ? (
+              <Blogs
+                key={b.id}
+                link={link}
+                imageUrl={b.image}
+                topic={b.title}
+                timeStamp={b.timeStamp}
+              />
+            ) : null;
+          })}
+        </div>
       </div>
     </div>
   );

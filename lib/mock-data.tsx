@@ -57,8 +57,8 @@ export const blogContent = [
     blog: [
       {
         id: "gRmBXRvZa5H8SKHXh-Jkz",
-        type: "E-Nexus",
-        content: "This is a heading.",
+        type: "heading",
+        content: "E-Nexus",
         tableContent: null,
       },
       {
@@ -107,8 +107,8 @@ export const blogContent = [
     blog: [
       {
         id: "gRmBXRvZa5H8SKHXh-Jkz",
-        type: "Top Hikes in Nyeri",
-        content: "This is a heading.",
+        type: "heading",
+        content: "Top Hikes in Nyeri",
         tableContent: null,
       },
       {
@@ -207,8 +207,8 @@ export const blogContent = [
     blog: [
       {
         id: "gRmBXRvZa5H8SKHXh-Jkz",
-        type: "AfyaPulse",
-        content: "This is a heading.",
+        type: "heading",
+        content: "AfyaPulse",
         tableContent: null,
       },
       {
@@ -294,8 +294,8 @@ export const blogContent = [
     blog: [
       {
         id: "gRmBXRvZa5H8SKHXh-Jkz",
-        type: "Production Ready website platform.",
-        content: "This is a heading.",
+        type: "heading",
+        content: "Production Ready website platform.",
         tableContent: null,
       },
       {
@@ -343,19 +343,19 @@ export const blogContent = [
 export const blogTopics = [
   {
     id: 0,
-    image: "Proj-tech.png",
+    image: "/assets/blogTopicImg/Proj-tech.png",
     title: "Projects & Tech",
     timeStamp: "Last Updated Mar 21, 2025",
   },
   {
     id: 1,
-    image: "jkuat-hackathon.jpg",
+    image: "/assets/blogTopicImg/jkuat-hackathon.jpg",
     title: "Startups & Ideas",
     timeStamp: "Last Updated Mar 21, 2025",
   },
   {
     id: 2,
-    image: "Bike-riders.png",
+    image: "/assets/blogTopicImg/Bike-riders.png",
     title: "Life On Wheels",
     timeStamp: "Last Updated Mar 21, 2025",
   },
@@ -364,12 +364,12 @@ export const blogTopics = [
 export const blogs = [
   {
     id: "gRmBXRvZa5H8SKHXh-Jkz",
-    image: "bike-riding.jpg",
+    image: "/assets/blogImg/bike-riding.jpg",
     topic: "Projects & Tech",
     title: "Self balancing robot",
     subtitle: "This is a sub-heading.",
     dateCreated: "21 March 2025",
-    tags: ["fun, adventure, hiking"],
+    tags: ["fun", "adventure", "hiking"],
     minsRead: 2,
     likes: 12,
     comments: 2,
@@ -377,7 +377,7 @@ export const blogs = [
   },
   {
     id: "-7TXITVxUTCp_cFJgl9kN",
-    image: "bike-riding.jpg",
+    image: "/assets/blogImg/bike-riding.jpg",
     topic: "Startups & Ideas",
     title: "E-Nexus",
     subtitle: "This is a sub-heading.",
@@ -390,7 +390,7 @@ export const blogs = [
   },
   {
     id: "Eg7peEZkC--hf_XvNQyY0",
-    image: "bike-riding.jpg",
+    image: "/assets/blogImg/bike-riding.jpg",
     topic: "Life On Wheels",
     title: "Top Hikes in Nyeri",
     subtitle:
@@ -404,7 +404,7 @@ export const blogs = [
   },
   {
     id: "9OFqzjt5oWGO9yZP9n_Mr",
-    image: "bike-riding.jpg",
+    image: "/assets/blogImg/bike-riding.jpg",
     topic: "Projects & Tech",
     title: "Data Logging System",
     subtitle: "This is a sub-heading.",
@@ -417,7 +417,7 @@ export const blogs = [
   },
   {
     id: "NTvvAT9O2uFRbcd1CjsIA",
-    image: "bike-riding.jpg",
+    image: "/assets/blogImg/bike-riding.jpg",
     topic: "Life On Wheels",
     title: "Nyeri hills is not for the weak 😂",
     subtitle: "This is a sub-heading.",

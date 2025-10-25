@@ -1,13 +1,14 @@
-import Image from "next/legacy/image";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { blogs, blogContent } from "@lib/mock-data";
 import OutputBlock from "./DraftifyProComponents/OutputBlock";
 
+import {
+  filterBlogsBy,
+  getBlogContentById,
+} from "@utils/FrontEndHooks/DataProcessing";
+
 export default function BlogArea({ blogId }: { blogId: string }) {
-  const blog = blogs.filter((b) => b.id === blogId)[0];
-  const content = blogContent.filter((b) => b.id === blogId)[0].blog;
+  const blog = filterBlogsBy("id", blogId)[0];
 
   return (
     <div className="flex flex-col gap-[20px] min-h-[1170px] h-fit p-[100px] bg-white dark:bg-black blog-text">
@@ -26,7 +27,7 @@ export default function BlogArea({ blogId }: { blogId: string }) {
         </div>
       </div>
 
-      <OutputBlock blocksData={content} />
+      <OutputBlock blocksData={getBlogContentById(blogId)} />
 
       <div className="flex detail-text">
         <div className="flex gap-[30px]">

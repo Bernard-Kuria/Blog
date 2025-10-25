@@ -1,25 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 type BlogProps = {
-  type: string;
   link: string;
   imageUrl: string;
   topic: string;
   timeStamp: string;
 };
 
-export default function Blogs({
-  type = "topic",
-  link,
-  imageUrl,
-  topic,
-  timeStamp,
-}: BlogProps) {
+export default function Blogs({ link, imageUrl, topic, timeStamp }: BlogProps) {
   const location = usePathname();
   const [hovered, setHovered] = useState(false);
 
@@ -45,13 +38,7 @@ export default function Blogs({
               } overflow-hidden`}
             >
               <Image
-                src={`/assets/${
-                  type === "topic"
-                    ? "blogTopicImg"
-                    : location === "/"
-                    ? "blogTopicImg"
-                    : "blogImg"
-                }/${imageUrl}`}
+                src={`${imageUrl}`}
                 alt="image"
                 layout="fill"
                 className="object-cover"

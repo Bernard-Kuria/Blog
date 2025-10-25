@@ -11,13 +11,14 @@ import ToolBar from "./DraftifyProComponents/ToolBar";
 import Grabber from "./DraftifyProComponents/Grabber";
 import BackGround from "./DraftifyProComponents/Background";
 
-import { useDraftify } from "../utils/useDraftify";
+import { useDraftify } from "../utils/DraftifyHooks/useDraftify";
 import { useGenerateGrid } from "../utils/DraftifyHooks/BackgroundHooks/backGroundEffects";
 
 export default function Draftify({ data }) {
   const [mounted, setMounted] = useState(false);
   const [view, setView] = useState("editor");
   const [gridDots, setGridDots] = useState([]);
+  const [draft, setDraft] = useState(data);
 
   const {
     blocksData,
@@ -34,12 +35,13 @@ export default function Draftify({ data }) {
     itemVariants,
     transitions,
     whileHover,
-  } = useDraftify(data);
+  } = useDraftify(draft);
 
   console.log(blocksData);
 
   useEffect(() => {
     setMounted(true);
+    setDraft([]);
   }, []);
 
   useGenerateGrid(setGridDots);

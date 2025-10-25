@@ -1,4 +1,5 @@
-import Image from "next/legacy/image";
+import { homePageImages } from "@utils/FrontEndHooks/DataProcessing";
+import Image from "next/image";
 
 export default function Hero() {
   const lines = [
@@ -48,7 +49,7 @@ export default function Hero() {
 
       <div className="relative w-[350px] h-[350px] overflow-hidden">
         <Image
-          src="/chill.jpg"
+          src={`${homePageImages()[0]}`}
           alt="chill image"
           layout="fill"
           className="object-cover object-[0%_40%]"
@@ -60,7 +61,7 @@ export default function Hero() {
           <BorderLines />
           <div className="relative w-[143px] h-[198px] overflow-hidden">
             <Image
-              src="/assets/blogImg/bike-riding.jpg"
+              src={`${homePageImages()[1]}`}
               alt="chill image"
               layout="fill"
               className="object-cover object-[0%_40%]"
@@ -74,7 +75,7 @@ export default function Hero() {
           <BorderLines />
           <div className="relative w-[292px] h-[143px] overflow-hidden">
             <Image
-              src="/assets/blogTopicImg/jkuat-hackathon.jpg"
+              src={`${homePageImages()[2]}`}
               alt="chill image"
               layout="fill"
               className="object-cover object-[0%_40%]"
@@ -98,29 +99,13 @@ export default function Hero() {
 
       <div className="absolute h-auto left-[70%] top-[-4px] flex">
         {[1, 2, 3, 4, 5].map((_, i) => (
-          <div
-            key={i}
-            className={`bg-(--background)`}
-            style={{
-              width: `20px`,
-              height: `6px`,
-              transform: `rotate(135deg)`,
-            }}
-          />
+          <LineBreaks key={i} />
         ))}
       </div>
 
       <div className="absolute h-auto left-[30%] bottom-[-4px] flex">
         {[1, 2, 3, 4, 5].map((_, i) => (
-          <div
-            key={i}
-            className={`bg-(--background)`}
-            style={{
-              width: `20px`,
-              height: `6px`,
-              transform: `rotate(135deg)`,
-            }}
-          />
+          <LineBreaks key={i} />
         ))}
       </div>
     </div>
@@ -139,5 +124,18 @@ function BorderLines() {
         <div className="w-[20px] h-[1px] bg-(--secondary-blue) rotate-90 translate-x-[10px] -translate-y-[10px]"></div>
       </div>
     </>
+  );
+}
+
+function LineBreaks() {
+  return (
+    <div
+      className={`bg-(--background)`}
+      style={{
+        width: `20px`,
+        height: `6px`,
+        transform: `rotate(135deg)`,
+      }}
+    ></div>
   );
 }

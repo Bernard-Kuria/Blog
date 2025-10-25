@@ -7,7 +7,10 @@ import BlogReading from "@c/BlogReading";
 import Comments from "@c/Comments";
 import Blogs from "@c/Blogs";
 
-import { blogs } from "@lib/mock-data";
+import {
+  getAllBlogsGeneralInfo,
+  getTopicFromLink,
+} from "@utils/FrontEndHooks/DataProcessing";
 
 export default function Page({
   params,
@@ -19,16 +22,8 @@ export default function Page({
 
   const { blogpage } = use(params);
 
-  const topicLowecase = param.blogTopicPage
-    ?.toString()
-    .split("-")
-    .map((p) => (p === "%26" ? "&" : p));
-
-  const backLink = topicLowecase?.join("-");
-
-  const topic = topicLowecase
-    ?.map((t) => t.charAt(0).toUpperCase() + t.slice(1))
-    ?.join(" ");
+  const topic = getTopicFromLink(param.blogTopicPage?.toString() || "");
+  const backLink = param.blogTopicPage;
 
   return (
     <div className="page-layout grid gap-[30px]">
@@ -42,12 +37,11 @@ export default function Page({
       <Comments blogId={blogpage} />
       <strong>More on this topic:</strong>
       <div className="page-layout flex flex-wrap gap-[20px]">
-        {blogs.map((b) => {
+        {getAllBlogsGeneralInfo().map((b) => {
           const link = backLink + "/" + b.id;
           return b.topic === topic ? (
             <Blogs
               key={b.id}
-              type={"blog"}
               link={link}
               imageUrl={b.image}
               topic={b.title}

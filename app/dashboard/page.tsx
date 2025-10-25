@@ -1,20 +1,30 @@
+import Link from "next/link";
+
 import SectionTitle from "@c/SectionTitle";
 import BlogsList from "@c/BlogsList";
 
-import { blogTopics, blogs } from "@lib/mock-data";
 import { FontAwesomeIcon } from "@node_modules/@fortawesome/react-fontawesome/dist";
+import {
+  getAllBlogsGeneralInfo,
+  getAllTopicsGeneralInfo,
+} from "@utils/FrontEndHooks/DataProcessing";
 
 export default function Dashboard() {
   return (
     <div className="grid justify-center">
       <div className="page-layout flex flex-col gap-[30px]">
-        <SectionTitle title="My Blogs" />
-        {blogTopics.map((topic) => (
+        <div className="flex gap-[50px] items-center">
+          <SectionTitle title="My Blogs" />
+          <button className="button">
+            <Link href={"/dashboard/new"}>create new blog</Link>
+          </button>
+        </div>
+        {getAllTopicsGeneralInfo().map((topic) => (
           <div key={topic.id}>
             <div className="sub-title">{topic.title}</div>
 
             <div className="grid gap-[20px]">
-              {blogs
+              {getAllBlogsGeneralInfo()
                 .filter((blog) => blog.topic === topic.title)
                 .map((blog) => {
                   return (

@@ -1,9 +1,15 @@
 "use client";
+
 import { use, useEffect, useState } from "react";
 import Link from "next/link";
+
 import Draftify from "@c/Draftify";
-import { tags, blogContent } from "@lib/mock-data";
-import SectionTitle from "@components/SectionTitle";
+import SectionTitle from "@c/SectionTitle";
+
+import {
+  getBlogForCurrentPage,
+  getAllTags,
+} from "@utils/FrontEndHooks/DataProcessing";
 
 export default function CreateModifyBlog({
   params,
@@ -12,40 +18,37 @@ export default function CreateModifyBlog({
 }) {
   const { createModify } = use(params);
 
-  // Use state to manage the topic and tag lists
+  // Manage the topics and tags
   const [topicList, setTopicList] = useState<string[]>([]);
   const [tagList, setTagList] = useState<string[]>([]);
 
-  // Use a state for the selected topic and tags
-  const [topic, setTopic] = useState<string>("");
+  // Set selected Topics & Tags
+  const [selectedTopic, setSelectedTopic] = useState<string>("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   useEffect(() => {
-    // This effect runs only once after the component mounts
     const topicSet: Set<string> = new Set();
-    const tagsArray: string[] = [];
+    const tagsSet: Set<string> = new Set();
 
-    Object.entries(tags).forEach(([topic, tagArray]) => {
+    Object.entries(getAllTags()).forEach(([topic, tagArray]) => {
       topicSet.add(topic);
       tagArray.forEach((tag) => {
-        tagsArray.push(tag.tagName);
+        tagsSet.add(tag.tagName);
       });
     });
 
     // Update the state with the new data
     setTopicList(Array.from(topicSet));
-    setTagList(tagsArray);
-  }, []); // The empty dependency array ensures it runs only once
+    setTagList(Array.from(tagsSet));
+  }, []);
 
   const handleTagChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newTag = e.target.value;
+    // Update current tags only if tag is not included
     if (!selectedTags.includes(newTag)) {
-      // Use the functional update to get the latest state
       setSelectedTags((prevTags) => [...prevTags, newTag]);
     }
   };
-
-  const data = blogContent.find((b) => b.id === createModify)?.blog;
 
   return (
     <div className="grid justify-center">
@@ -56,15 +59,21 @@ export default function CreateModifyBlog({
         <Link className="cursor-pointer w-fit" href={"../dashboard"}>
           &larr; Back
         </Link>
-        <Draftify data={createModify === "new" ? [] : data} />
+        <Draftify
+          data={
+            createModify === "new"
+              ? []
+              : getBlogForCurrentPage(createModify) || []
+          }
+        />
         <div className="flex gap-[100px]">
           <div className="grid gap-[20px]">
             Select Topic
             <select
               className="border p-2"
               name="topics"
-              value={topic}
-              onChange={(e) => setTopic(e.target.value)}
+              value={selectedTopic}
+              onChange={(e) => setSelectedTopic(e.target.value)}
             >
               <option value="" disabled>
                 Select a topic
@@ -103,17 +112,31 @@ export default function CreateModifyBlog({
             </div>
           </div>
         </div>
-        <div className="flex justify-between">
-          <button className="border p-2 text-(--primary-blue) border-(--primary-blue) hover:bg-(--primary-blue) hover:text-white cursor-pointer">
-            Add New Post
-          </button>
-          <button className="border p-2 text-(--secondary-blue) border-(--secondary-blue) hover:bg-(--secondary-blue) hover:text-white cursor-pointer">
-            Save as Draft
-          </button>
-          <button className="border p-2 text-red-500 border-red-500 hover:bg-red-500 hover:text-white cursor-pointer">
-            Delete Draft
-          </button>
-        </div>
+        {createModify === "new" ? (
+          <div className="flex justify-between">
+            <button className="border p-2 text-(--primary-blue) border-(--primary-blue) hover:bg-(--primary-blue) hover:text-white cursor-pointer">
+              Add New Post
+            </button>
+            <button className="border p-2 text-(--secondary-blue) border-(--secondary-blue) hover:bg-(--secondary-blue) hover:text-white cursor-pointer">
+              Save as Draft
+            </button>
+            <button className="border p-2 text-red-500 border-red-500 hover:bg-red-500 hover:text-white cursor-pointer">
+              Delete Draft
+            </button>
+          </div>
+        ) : (
+          <div className="flex justify-between">
+            <button className="border p-2 text-(--primary-blue) border-(--primary-blue) hover:bg-(--primary-blue) hover:text-white cursor-pointer">
+              Update Post
+            </button>
+            <button className="border p-2 text-(--secondary-blue) border-(--secondary-blue) hover:bg-(--secondary-blue) hover:text-white cursor-pointer">
+              <Link href={"/dashboard"}>Undo update</Link>
+            </button>
+            <button className="border p-2 text-red-500 border-red-500 hover:bg-red-500 hover:text-white cursor-pointer">
+              Delete This post
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
