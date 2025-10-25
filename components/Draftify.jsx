@@ -37,8 +37,6 @@ export default function Draftify({ data }) {
     whileHover,
   } = useDraftify(draft);
 
-  console.log(blocksData);
-
   useEffect(() => {
     setMounted(true);
     setDraft([]);
