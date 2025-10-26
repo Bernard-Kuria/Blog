@@ -7,7 +7,7 @@ import Draftify from "@c/Draftify";
 import SectionTitle from "@c/SectionTitle";
 
 import {
-  getBlogForCurrentPage,
+  getBlogContentById,
   getAllTags,
 } from "@utils/FrontEndHooks/DataProcessing";
 
@@ -61,9 +61,7 @@ export default function CreateModifyBlog({
         </Link>
         <Draftify
           data={
-            createModify === "new"
-              ? []
-              : getBlogForCurrentPage(createModify) || []
+            createModify === "new" ? [] : getBlogContentById(createModify) || []
           }
         />
         <div className="flex gap-[100px]">

@@ -16,6 +16,8 @@
     "@fortawesome/react-fontawesome": "^3.1.0",
     "docx": "^9.5.1",
     "file-saver": "^2.0.5",
+    "firebase": "^12.4.0",
+    "firebase-admin": "^13.5.0",
     "framer-motion": "^12.23.24",
     "nanoid": "^5.1.6",
     "next": "15.5.4",

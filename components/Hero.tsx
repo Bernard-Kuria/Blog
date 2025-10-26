@@ -51,8 +51,9 @@ export default function Hero() {
         <Image
           src={`${homePageImages()[0]}`}
           alt="chill image"
-          fill
-          className="object-cover object-[0%_40%]"
+          width={700} // Set the width explicitly based on the parent
+          height={700}
+          className="object-cover object-[0%_30%] scale-200"
         />
       </div>
 
@@ -61,10 +62,11 @@ export default function Hero() {
           <BorderLines />
           <div className="relative w-[143px] h-[198px] overflow-hidden">
             <Image
-              src={`${homePageImages()[1]}`}
+              src={homePageImages()[1]}
               alt="chill image"
-              fill
-              className="object-cover object-[0%_40%]"
+              width={286}
+              height={396}
+              className="w-full h-full object-cover object-[-0%_40%] scale-200"
             />
           </div>
         </div>

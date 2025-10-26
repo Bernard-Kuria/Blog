@@ -2,7 +2,7 @@ import {
   blogContent,
   blogTopics,
   blogs,
-  featuredBlog,
+  featuredBlogs,
   drafts,
   comments,
   tags,
@@ -16,10 +16,10 @@ const imagesHome = [
 ];
 
 export const homePageImages = () => imagesHome;
-export const getAllBlogsContentInfo = () => blogContent;
-export const getAllTopicsGeneralInfo = () => blogTopics;
-export const getAllBlogsGeneralInfo = () => blogs;
-export const getAllFeaturedBlogs = () => featuredBlog;
+export const getAllBlogsContent = () => blogContent;
+export const getAllTopics = () => blogTopics;
+export const getAllBlogs = () => blogs;
+export const getAllFeaturedBlogs = () => featuredBlogs;
 export const getAllDrafts = () => drafts;
 export const getAllComments = () => comments;
 export const getAllTags = () => tags;
@@ -27,6 +27,16 @@ export const getAllMilestones = () => milestones;
 
 export const getCommentsById = (id: string) =>
   getAllComments().filter((c) => c.id === id);
+
+// const blogsDBFormat = getAllBlogs().map((bl) => {
+//   const { id, ...metadata } = bl;
+//   const { blog } = getAllBlogsContent().filter((b) => b.id === bl.id)[0];
+//   return {
+//     id: bl.id,
+//     metadata: metadata,
+//     blogContent: blog,
+//   };
+// });
 
 export const getTopicFromLink = (link: string) =>
   link
@@ -43,7 +53,7 @@ export const getLinkFromTopic = (b: string) =>
     .join("-");
 
 export const getTopicMatchingPage = (page: string) => {
-  return getAllTopicsGeneralInfo().find(
+  return getAllTopics().find(
     (t) =>
       getLinkFromTopic(t.title) ===
       page
@@ -53,52 +63,76 @@ export const getTopicMatchingPage = (page: string) => {
   );
 };
 
-export const getBlogForCurrentPage = (page: string) =>
-  getAllBlogsContentInfo().find((b) => b.id === page)?.blog;
-
 export const getFeaturedBlogByTopic = (topic: string) => {
   const targetBlogId = getAllFeaturedBlogs().find((f) => f.topic === topic)?.id;
   return filterBlogsBy("id", targetBlogId || [])[0];
 };
 
+export const checkIsFeatured = (id: string) =>
+  getAllFeaturedBlogs().some((f) => f.id === id);
+
 export const getBlogContentById = (blogId: string) =>
-  getAllBlogsContentInfo().filter((b) => b.id === blogId)[0].blog;
+  getAllBlogsContent().find((b) => b.id === blogId)?.blog;
 
 export const getMilestonesByTopic = (topic: string) =>
-  getAllMilestones().find((m) => {
-    if (m.topic === topic) return m.milestones;
-  });
+  getAllMilestones().find((m) => m.topic === topic);
 
 export const filterBlogsBy = (
   type: string,
   filter: string | number | string[]
 ) => {
+  const allBlogs = getAllBlogs();
   switch (type) {
     case "id":
-      return blogs.filter((blog) => blog.id === filter);
+      return allBlogs.filter((blog) => blog.id === filter);
     case "image":
-      return blogs.filter((blog) => blog.image === filter);
+      return allBlogs.filter((blog) => blog.blogMeta.image === filter);
     case "topic":
-      return blogs.filter((blog) => blog.topic === filter);
+      return allBlogs.filter((blog) => blog.blogMeta.topic === filter);
     case "title":
-      return blogs.filter((blog) => blog.title === filter);
+      return allBlogs.filter((blog) => blog.blogMeta.title === filter);
     case "subtitle":
-      return blogs.filter((blog) => blog.subtitle === filter);
+      return allBlogs.filter((blog) => blog.blogMeta.subtitle === filter);
     case "dateCreated":
-      return blogs.filter((blog) => blog.dateCreated === filter);
+      return allBlogs.filter((blog) => blog.blogMeta.dateCreated === filter);
     case "tags":
-      return blogs.filter((blog) =>
-        blog.tags.includes(typeof filter === "string" ? filter : "")
+      return allBlogs.filter((blog) =>
+        blog.blogMeta.tags.includes(typeof filter === "string" ? filter : "")
       );
     case "minsRead":
-      return blogs.filter((blog) => blog.minsRead === filter);
+      return allBlogs.filter((blog) => blog.blogMeta.minsRead === filter);
     case "likes":
-      return blogs.filter((blog) => blog.likes === filter);
+      return allBlogs.filter((blog) => blog.blogMeta.likes === filter);
     case "comments":
-      return blogs.filter((blog) => blog.comments === filter);
+      return allBlogs.filter((blog) => blog.blogMeta.comments === filter);
     case "views":
-      return blogs.filter((blog) => blog.views === filter);
+      return allBlogs.filter((blog) => blog.blogMeta.views === filter);
     default:
-      return blogs;
+      return allBlogs;
+  }
+};
+
+export const filterDraftsBy = (
+  type: string,
+  filter: string | number | string[]
+) => {
+  const allBlogs = getAllDrafts();
+  switch (type) {
+    case "id":
+      return allBlogs.filter((blog) => blog.id === filter);
+    case "image":
+      return allBlogs.filter((blog) => blog.image === filter);
+    case "topic":
+      return allBlogs.filter((blog) => blog.topic === filter);
+    case "title":
+      return allBlogs.filter((blog) => blog.title === filter);
+    case "dateCreated":
+      return allBlogs.filter((blog) => blog.dateCreated === filter);
+    case "tags":
+      return allBlogs.filter((blog) =>
+        blog.tags.includes(typeof filter === "string" ? filter : "")
+      );
+    default:
+      return allBlogs;
   }
 };

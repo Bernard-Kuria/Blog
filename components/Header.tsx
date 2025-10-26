@@ -1,5 +1,4 @@
 "use client";
-import "@l/icons";
 
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -12,7 +11,7 @@ import { applyToggleStyles } from "@utils/FrontEndHooks/UIhooks";
 
 import {
   getLinkFromTopic,
-  getAllTopicsGeneralInfo,
+  getAllTopics,
 } from "@utils/FrontEndHooks/DataProcessing";
 
 export default function Header() {
@@ -60,7 +59,7 @@ export default function Header() {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   }
 
-  const topicNames = getAllTopicsGeneralInfo().map((b) => b.title);
+  const topicNames = getAllTopics().map((b) => b.title);
   const topicLinks = topicNames.map((topic) =>
     getLinkFromTopic(topic.toString())
   );
@@ -86,7 +85,7 @@ export default function Header() {
           }}
           className="section-title cursor-pointer"
         >
-          Bernard Kuria
+          My Life Uncharted
         </button>
         <div className="font-bold">
           {(() => {

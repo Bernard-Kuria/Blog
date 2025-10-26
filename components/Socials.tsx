@@ -1,3 +1,7 @@
+"use client";
+
+import "@l/icons";
+
 import { IconPrefix, IconName } from "@fortawesome/fontawesome-common-types";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

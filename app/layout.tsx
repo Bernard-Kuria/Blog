@@ -16,7 +16,7 @@ const lexend = Lexend({
 });
 
 export const metadata = {
-  title: "Bernard's Blog",
+  title: "My Life Uncharted",
   description: "A creative space for me to showcase a glimpse of myself",
 };
 

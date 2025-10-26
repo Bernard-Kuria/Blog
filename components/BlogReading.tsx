@@ -14,9 +14,9 @@ export default function BlogArea({ blogId }: { blogId: string }) {
     <div className="flex flex-col gap-[20px] min-h-[1170px] h-fit p-[100px] bg-white dark:bg-black blog-text">
       <div className="flex detail-text">
         <div className="flex-1 flex gap-[10px]">
-          <div>{blog.dateCreated}</div>
+          <div>{blog.blogMeta.dateCreated}</div>
           <div className="w-[0.5px] h-[0.5px] rounded-[0.5px]"></div>
-          <div>{blog.minsRead} min read</div>
+          <div>{blog.blogMeta.minsRead} min read</div>
         </div>
         <div className="flex gap-[10px] items-center cursor-pointer">
           <FontAwesomeIcon
@@ -32,15 +32,15 @@ export default function BlogArea({ blogId }: { blogId: string }) {
       <div className="flex detail-text">
         <div className="flex gap-[30px]">
           <div>
-            <strong>{blog.views}</strong> views
+            <strong>{blog.blogMeta.views}</strong> views
           </div>
           <div>
-            <strong>{blog.comments}</strong> comments
+            <strong>{blog.blogMeta.comments}</strong> comments
           </div>
         </div>
         <div className="flex-1"></div>
         <div className="flex gap-[10px] items-center">
-          <strong>{blog.likes}</strong>{" "}
+          <strong>{blog.blogMeta.likes}</strong>{" "}
           <FontAwesomeIcon className="icon-size" icon={["far", "heart"]} />
         </div>
       </div>

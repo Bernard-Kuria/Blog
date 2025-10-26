@@ -12,7 +12,7 @@ import {
   filterBlogsBy,
   getLinkFromTopic,
   getTopicMatchingPage,
-  getAllTopicsGeneralInfo,
+  getAllTopics,
 } from "@utils/FrontEndHooks/DataProcessing";
 
 export default function Page({
@@ -55,7 +55,7 @@ export default function Page({
       <div className="page-layout">
         <strong>Explore More Topics:</strong>
         <div className="flex flex-wrap gap-[20px]">
-          {getAllTopicsGeneralInfo().map((b) => {
+          {getAllTopics().map((b) => {
             const link = getLinkFromTopic(b.title);
             return blogTopicPage !== link ? (
               <Blogs

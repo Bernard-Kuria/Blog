@@ -1,6 +1,7 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 import {
+  faArrowUpFromBracket,
   faXmark,
   faShareNodes,
   faBars,
@@ -29,6 +30,7 @@ import {
   faThumbsUp,
   faImage,
   faComment,
+  faEye,
 } from "@fortawesome/free-regular-svg-icons";
 
 import {
@@ -40,6 +42,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 library.add(
+  faArrowUpFromBracket,
   faHeart,
   faXmark,
   faPenToSquare,
@@ -71,5 +74,6 @@ library.add(
   faFacebookF,
   faCopy,
   faCheck,
-  faComment
+  faComment,
+  faEye
 );

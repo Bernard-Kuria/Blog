@@ -32,15 +32,17 @@ export type BlogTopicsType = topic[];
 
 export type Blog = {
   id: string;
-  image: string;
-  topic: string;
-  title: string;
-  subtitle: string;
-  dateCreated: string;
-  tags: string[];
-  likes: number;
-  comments: number;
-  views: number;
+  blogMeta: {
+    image: string;
+    topic: string;
+    title: string;
+    subtitle: string;
+    dateCreated: string;
+    tags: string[];
+    likes: number;
+    comments: number;
+    views: number;
+  };
 };
 
 export type BlogsType = Blog[];
@@ -57,6 +59,7 @@ export type draft = {
   image: string;
   topic: string;
   title: string;
+  subtitle: string;
   dateCreated: string;
   tags: string[];
 };

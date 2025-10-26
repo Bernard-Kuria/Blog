@@ -7,7 +7,7 @@ import Hero from "@c/Hero";
 
 import {
   getLinkFromTopic,
-  getAllTopicsGeneralInfo,
+  getAllTopics,
 } from "@utils/FrontEndHooks/DataProcessing";
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
       >
         {location === "/" ? "Browse" : "Other"} Topics
         <div className="flex flex-wrap gap-[20px]">
-          {getAllTopicsGeneralInfo().map((b) => {
+          {getAllTopics().map((b) => {
             const link = getLinkFromTopic(b.title);
             return (
               <Blogs
