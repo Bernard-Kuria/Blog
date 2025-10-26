@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { db } from "@lib/firebase";
 import {
   collection,
@@ -10,24 +10,26 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
-export async function GET({ params }: { params: Promise<{ id: string }> }) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
   try {
-    const { id } = await params;
+    const { id } = params;
 
     if (id === "all") {
       const blogsSnapshot = await getDocs(collection(db, "blogContent"));
-
       return NextResponse.json(blogsSnapshot.docs.map((doc) => doc.data()));
-    } else {
-      const blogRef = doc(db, "blogContent", id);
-      const blogSnap = await getDoc(blogRef);
-
-      if (!blogSnap.exists()) {
-        return new Response("Blog not found", { status: 404 });
-      }
-
-      return NextResponse.json(blogSnap.data());
     }
+
+    const blogRef = doc(db, "blogContent", id);
+    const blogSnap = await getDoc(blogRef);
+
+    if (!blogSnap.exists()) {
+      return new Response("Blog not found", { status: 404 });
+    }
+
+    return NextResponse.json(blogSnap.data());
   } catch (error) {
     console.error("Error fetching blog:", error);
     return new Response("Failed to fetch blog", { status: 500 });
