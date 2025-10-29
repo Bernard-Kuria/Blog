@@ -642,100 +642,38 @@ export const comments = [
   },
 ];
 
-export const tags = {
-  "life on wheels": [
-    {
-      id: 0,
-      tagName: "thrilling",
-    },
-    {
-      id: 1,
-      tagName: "risk taking",
-    },
-    {
-      id: 2,
-      tagName: "adventure",
-    },
-    {
-      id: 3,
-      tagName: "life",
-    },
-    {
-      id: 4,
-      tagName: "fun",
-    },
-  ],
-  "Startups & Ideas": [
-    {
-      id: 0,
-      tagName: "engineering",
-    },
-    {
-      id: 1,
-      tagName: "tech",
-    },
-    {
-      id: 2,
-      tagName: "startups",
-    },
-    {
-      id: 3,
-      tagName: "success",
-    },
-    {
-      id: 4,
-      tagName: "risk taking",
-    },
-  ],
-  "Projects & Tech": [
-    {
-      id: 0,
-      tagName: "engineering",
-    },
-    {
-      id: 1,
-      tagName: "tech",
-    },
-    {
-      id: 2,
-      tagName: "IOT",
-    },
-    {
-      id: 3,
-      tagName: "embedded systems",
-    },
-    {
-      id: 4,
-      tagName: "pcb",
-    },
-    {
-      id: 5,
-      tagName: "arduino",
-    },
-  ],
-};
+export const tags = [
+  {
+    topic: "life on wheels",
+    tags: ["thrilling", "risk taking", "adventure", "life", "fun"],
+  },
+  {
+    topic: "Startups & Ideas",
+    tags: ["engineering", "tech", "startups", "success", "risk taking"],
+  },
+  {
+    topic: "Projects & Tech",
+    tags: ["engineering", "tech", "IOT", "embedded systems", "pcb", "arduino"],
+  },
+];
 
 export const milestones = [
   {
     topic: "Life On Wheels",
     milestones: [
       {
-        id: 0,
         title: "Towns Visited",
         value: 8,
       },
       {
-        id: 1,
         title: "Longest Ride in KM",
         value: 58,
       },
       {
-        id: 2,
         title: "Punctured Tyres",
         value: 2,
       },
       {
-        id: 3,
         title: "Accidents",
         value: 2,
       },
@@ -745,22 +683,18 @@ export const milestones = [
     topic: "Projects & Tech",
     milestones: [
       {
-        id: 0,
         title: "Total projects yet",
         value: 50,
       },
       {
-        id: 1,
         title: "Award winning projects",
         value: 3,
       },
       {
-        id: 2,
         title: "Biggest failed attempts",
         value: 52,
       },
       {
-        id: 3,
         title: "Accidents",
         value: 30,
       },
@@ -770,22 +704,18 @@ export const milestones = [
     topic: "Startups & Ideas",
     milestones: [
       {
-        id: 0,
         title: "Startups I own",
         value: 2,
       },
       {
-        id: 1,
         title: "Startups I share ownership",
         value: 3,
       },
       {
-        id: 2,
         title: "Hackathons won",
         value: 2,
       },
       {
-        id: 3,
         title: "Hackathons participated",
         value: 7,
       },

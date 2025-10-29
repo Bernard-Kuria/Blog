@@ -13,6 +13,7 @@ import {
   getLinkFromTopic,
   getAllTopics,
 } from "@utils/FrontEndHooks/DataProcessing";
+import { topic } from "@lib/types";
 
 export default function Header() {
   const router = useRouter();
@@ -20,6 +21,7 @@ export default function Header() {
   const themeModeBtn = useRef<HTMLLIElement | null>(null);
   const themeModeToggle = useRef<HTMLDivElement | null>(null);
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [topicNames, setTopicNames] = useState<string[]>([]);
 
   const location = usePathname();
 
@@ -59,10 +61,15 @@ export default function Header() {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   }
 
-  const topicNames = getAllTopics().map((b) => b.title);
-  const topicLinks = topicNames.map((topic) =>
-    getLinkFromTopic(topic.toString())
-  );
+  useEffect(() => {
+    async function fetchTopics() {
+      const topics = await getAllTopics();
+      setTopicNames(topics.map((b: topic) => b.title));
+    }
+    fetchTopics();
+  }, []);
+
+  const topicLinks = topicNames.map((topic) => getLinkFromTopic(topic));
 
   const topics = topicLinks.map((link, index) => ({
     link,

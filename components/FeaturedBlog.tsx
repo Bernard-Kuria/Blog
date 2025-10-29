@@ -1,16 +1,43 @@
+"use client";
+
 import Image from "next/image";
 import {
   getFeaturedBlogByTopic,
   getLinkFromTopic,
 } from "@utils/FrontEndHooks/DataProcessing";
 import Link from "@node_modules/next/link";
+import { useEffect, useState } from "react";
+import { Blog } from "@lib/types";
 
 export default function FeaturedBlog({ topic }: { topic: string }) {
-  const featuredBlog = getFeaturedBlogByTopic(topic);
+  const [featuredBlog, setFeaturedBlog] = useState<Blog>({
+    id: "",
+    blogMeta: {
+      image: "",
+      topic: "",
+      title: "",
+      subtitle: "",
+      dateCreated: "",
+      tags: [""],
+      likes: 0,
+      comments: 0,
+      views: 0,
+      minsRead: 0,
+    },
+  });
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    getFeaturedBlogByTopic(topic)
+      .then(setFeaturedBlog)
+      .finally(() => setLoaded(true));
+  }, []);
 
   if (!featuredBlog) {
     return <div>Blog not found for topic: {topic}</div>;
   }
+
+  if (!loaded) return <div>Loading Featured blog</div>;
 
   return (
     <Link
@@ -22,12 +49,16 @@ export default function FeaturedBlog({ topic }: { topic: string }) {
       <div className="flex items-center text-white">Featured Blog</div>
       <div className="flex gap-[30px]">
         <div className="relative w-[50%]">
-          <Image
-            src={`${featuredBlog.blogMeta.image}`}
-            alt="Bike Riding"
-            fill
-            className="object-cover"
-          />
+          {featuredBlog.blogMeta.image === "" ? (
+            ""
+          ) : (
+            <Image
+              src={`${featuredBlog.blogMeta.image}`}
+              alt="Bike Riding"
+              fill
+              className="object-cover"
+            />
+          )}
         </div>
         <div className="flex flex-col justify-between h-full w-[50%] text-white">
           <div className="grid h-fit">

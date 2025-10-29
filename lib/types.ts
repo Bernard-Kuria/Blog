@@ -8,10 +8,16 @@ export type linesTypes = {
   angle: string;
 };
 
+export type content = {
+  id: string;
+  type: string;
+  content: string;
+  tableContent: null;
+};
+
 export type blogContent = {
   id: string;
-  topic: string;
-  blog: {
+  blogContent: {
     id: string;
     type: string;
     content: string;
@@ -22,7 +28,7 @@ export type blogContent = {
 export type blogContentType = blogContent[];
 
 export type topic = {
-  id: number;
+  id: string;
   image: string;
   title: string;
   timeStamp: string;
@@ -42,6 +48,7 @@ export type Blog = {
     likes: number;
     comments: number;
     views: number;
+    minsRead: number;
   };
 };
 
@@ -75,18 +82,18 @@ export type comment = {
 export type commentsType = comment[];
 
 export type tag = {
-  "life on wheels": {
-    id: number;
-    tagName: string;
-  }[];
-  "Startups & Ideas": {
-    id: number;
-    tagName: string;
-  }[];
-  "Projects & Tech": {
-    id: number;
-    tagName: string;
-  };
+  topic: string;
+  tags: string[];
 };
 
 export type tagsType = tag[];
+
+export type milestone = {
+  title: string;
+  value: number;
+};
+
+export type Milestones = {
+  topic: string;
+  milestones: milestone[];
+};

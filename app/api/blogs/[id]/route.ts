@@ -26,14 +26,25 @@ export async function GET(
 
       return NextResponse.json(blogsSnapshot.docs.map((doc) => doc.data()));
     } else {
-      const blogRef = doc(db, "blogContent", id);
-      const blogSnap = await getDoc(blogRef);
+      const blogMetaRef = doc(db, "blogs", id);
 
-      if (!blogSnap.exists()) {
+      const blogContentRef = doc(db, "blogContent", id);
+
+      const [metaSnap, contentSnap] = await Promise.all([
+        getDoc(blogMetaRef),
+        getDoc(blogContentRef),
+      ]);
+
+      if (!metaSnap.exists() || !contentSnap.exists())
         return new Response("Blog not found", { status: 404 });
-      }
 
-      return NextResponse.json(blogSnap.data());
+      const blogData = {
+        id,
+        blogMeta: metaSnap.data().blogMeta,
+        blogContent: contentSnap.data().blogContent,
+      };
+
+      return NextResponse.json(blogData);
     }
   } catch (error) {
     console.error("Error fetching blog:", error);

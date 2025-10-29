@@ -7,11 +7,17 @@ import { FontAwesomeIcon } from "@node_modules/@fortawesome/react-fontawesome/di
 
 import { Blog } from "@lib/types";
 import { checkIsFeatured } from "@utils/FrontEndHooks/DataProcessing";
+import { useEffect, useState } from "react";
 
 export default function BlogsList({ blog }: { blog: Blog }) {
+  const [isFeatured, setIsFeatured] = useState(false);
   const location = usePathname();
   const { id } = blog;
   const { title, subtitle, views, comments, likes } = blog.blogMeta;
+
+  useEffect(() => {
+    checkIsFeatured(id).then(setIsFeatured);
+  }, []);
 
   return (
     <div className="h-[200px] flex gap-[10px] border rounded-[10px] flex-1 p-5">
@@ -36,10 +42,8 @@ export default function BlogsList({ blog }: { blog: Blog }) {
             {likes}
           </div>
         </div>
-        <button
-          className={`${checkIsFeatured(id) ? "buttonInverted" : "button"}`}
-        >
-          {checkIsFeatured(id) ? "Featured" : "Set as Featured"}
+        <button className={`${isFeatured ? "buttonInverted" : "button"}`}>
+          {isFeatured ? "Featured" : "Set as Featured"}
         </button>
       </div>
     </div>

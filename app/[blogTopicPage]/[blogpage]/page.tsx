@@ -1,5 +1,5 @@
 "use client";
-import { use } from "react";
+import { use, useEffect, useState } from "react";
 
 import { useRouter, useParams } from "next/navigation";
 
@@ -11,19 +11,46 @@ import {
   getAllBlogs,
   getTopicFromLink,
 } from "@utils/FrontEndHooks/DataProcessing";
+import { BlogsType } from "@lib/types";
 
 export default function Page({
   params,
 }: {
   params: Promise<{ blogpage: string }>;
 }) {
+  const [blogs, setBlogs] = useState<BlogsType>([
+    {
+      id: "",
+      blogMeta: {
+        image: "",
+        topic: "",
+        title: "",
+        subtitle: "",
+        dateCreated: "",
+        tags: [""],
+        likes: 0,
+        comments: 0,
+        views: 0,
+        minsRead: 0,
+      },
+    },
+  ]);
+  const [loaded, setLoaded] = useState(false);
   const router = useRouter();
-  const param = useParams(); // { topic: "projects-and-tech", blogpage: " SETdfhzfgbhxdfgvvx" }
+  const param = useParams();
 
   const { blogpage } = use(params);
 
   const topic = getTopicFromLink(param.blogTopicPage?.toString() || "");
   const backLink = param.blogTopicPage;
+
+  useEffect(() => {
+    getAllBlogs()
+      .then(setBlogs)
+      .finally(() => setLoaded(true));
+  }, []);
+
+  if (!loaded) return <div>Loading Blogs</div>;
 
   return (
     <div className="page-layout grid gap-[30px]">
@@ -37,7 +64,7 @@ export default function Page({
       <Comments blogId={blogpage} />
       <strong>More on this topic:</strong>
       <div className="page-layout flex flex-wrap gap-[20px]">
-        {getAllBlogs().map((b) => {
+        {blogs.map((b) => {
           const link = backLink + "/" + b.id;
           return b.blogMeta.topic === topic && b.id !== blogpage ? (
             <Blogs

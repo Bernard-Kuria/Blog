@@ -1,18 +1,28 @@
+"use client";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import type { comment } from "@lib/types";
+import type { comment, commentsType } from "@lib/types";
+import { useEffect, useState } from "react";
 
 import { getCommentsById } from "@utils/FrontEndHooks/DataProcessing";
 
 export default function Comments({ blogId }: { blogId: string }) {
+  const [comments, setComments] = useState<commentsType>();
+  useEffect(() => {
+    getCommentsById(blogId).then(setComments);
+  }, []);
+
   return (
     <div className="detail-text grid gap-[10px]">
       <strong>Comments (Anonymous)</strong>
       <div className="grid gap-[20px]">
         <EditComment />
-        {getCommentsById(blogId).map((c, id) => (
-          <Comment key={id} comment={c} />
-        ))}
+        {!comments ? (
+          <div>Loading comments</div>
+        ) : (
+          comments.map((c, id) => <Comment key={id} comment={c} />)
+        )}
       </div>
       <div className="text-(--primary-blue)">view more</div>
     </div>

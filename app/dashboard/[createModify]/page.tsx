@@ -1,15 +1,13 @@
 "use client";
 
-import { use, useEffect, useState } from "react";
+import { use, useState } from "react";
 import Link from "next/link";
 
 import Draftify from "@c/Draftify";
 import SectionTitle from "@c/SectionTitle";
 
-import {
-  getBlogContentById,
-  getAllTags,
-} from "@utils/FrontEndHooks/DataProcessing";
+import { handleTagChange } from "@utils/FrontEndHooks/UIhooks";
+import { useTagsAndTopics } from "@utils/FrontEndHooks/UIhooks";
 
 export default function CreateModifyBlog({
   params,
@@ -18,37 +16,15 @@ export default function CreateModifyBlog({
 }) {
   const { createModify } = use(params);
 
-  // Manage the topics and tags
-  const [topicList, setTopicList] = useState<string[]>([]);
-  const [tagList, setTagList] = useState<string[]>([]);
+  // ✅ Load topics and tags using the custom hook
+  const { topicList, tagList, loading, error, blogContent } =
+    useTagsAndTopics(createModify);
 
-  // Set selected Topics & Tags
-  const [selectedTopic, setSelectedTopic] = useState<string>("");
+  const [selectedTopic, setSelectedTopic] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-  useEffect(() => {
-    const topicSet: Set<string> = new Set();
-    const tagsSet: Set<string> = new Set();
-
-    Object.entries(getAllTags()).forEach(([topic, tagArray]) => {
-      topicSet.add(topic);
-      tagArray.forEach((tag) => {
-        tagsSet.add(tag.tagName);
-      });
-    });
-
-    // Update the state with the new data
-    setTopicList(Array.from(topicSet));
-    setTagList(Array.from(tagsSet));
-  }, []);
-
-  const handleTagChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newTag = e.target.value;
-    // Update current tags only if tag is not included
-    if (!selectedTags.includes(newTag)) {
-      setSelectedTags((prevTags) => [...prevTags, newTag]);
-    }
-  };
+  if (loading) return <div>Loading topics and tags...</div>;
+  if (error) return <div className="text-red-500">{error}</div>;
 
   return (
     <div className="grid justify-center">
@@ -59,12 +35,11 @@ export default function CreateModifyBlog({
         <Link className="cursor-pointer w-fit" href={"../dashboard"}>
           &larr; Back
         </Link>
-        <Draftify
-          data={
-            createModify === "new" ? [] : getBlogContentById(createModify) || []
-          }
-        />
+
+        <Draftify data={createModify === "new" ? [] : blogContent} />
+
         <div className="flex gap-[100px]">
+          {/* Topic Selector */}
           <div className="grid gap-[20px]">
             Select Topic
             <select
@@ -83,6 +58,8 @@ export default function CreateModifyBlog({
               ))}
             </select>
           </div>
+
+          {/* Tag Selector */}
           <div className="grid gap-[20px]">
             Select Tag
             <div className="flex gap-[5px] border p-1">
@@ -94,7 +71,13 @@ export default function CreateModifyBlog({
                   {tag}
                 </div>
               ))}
-              <select name="tags" value="" onChange={handleTagChange}>
+              <select
+                name="tags"
+                value=""
+                onChange={(e) =>
+                  handleTagChange(e, selectedTags, setSelectedTags)
+                }
+              >
                 <option value="" disabled>
                   Select a tag
                 </option>
@@ -110,6 +93,7 @@ export default function CreateModifyBlog({
             </div>
           </div>
         </div>
+
         {createModify === "new" ? (
           <div className="flex justify-between">
             <button className="border p-2 text-(--primary-blue) border-(--primary-blue) hover:bg-(--primary-blue) hover:text-white cursor-pointer">

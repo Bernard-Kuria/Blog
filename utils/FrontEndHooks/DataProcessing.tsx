@@ -1,13 +1,12 @@
+export const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "";
+
 import {
-  blogContent,
-  blogTopics,
-  blogs,
-  featuredBlogs,
-  drafts,
-  comments,
-  tags,
-  milestones,
-} from "@lib/mock-data";
+  BlogsType,
+  BlogTopicsType,
+  commentsType,
+  draftsType,
+  Milestones,
+} from "@lib/types";
 
 const imagesHome = [
   "/assets/homeImages/chill.jpg",
@@ -16,27 +15,153 @@ const imagesHome = [
 ];
 
 export const homePageImages = () => imagesHome;
-export const getAllBlogsContent = () => blogContent;
-export const getAllTopics = () => blogTopics;
-export const getAllBlogs = () => blogs;
-export const getAllFeaturedBlogs = () => featuredBlogs;
-export const getAllDrafts = () => drafts;
-export const getAllComments = () => comments;
-export const getAllTags = () => tags;
-export const getAllMilestones = () => milestones;
 
-export const getCommentsById = (id: string) =>
-  getAllComments().filter((c) => c.id === id);
+export async function getAllBlogsContent() {
+  try {
+    const res = await fetch(`${API_BASE}/api/blogs/all`, {
+      cache: "no-store",
+    });
+    if (!res.ok) throw new Error(`Failed to fetch blogs: ${res.status}`);
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Error in getAllBlogsContent:", err);
+    throw err;
+  }
+}
 
-// const blogsDBFormat = getAllBlogs().map((bl) => {
-//   const { id, ...metadata } = bl;
-//   const { blog } = getAllBlogsContent().filter((b) => b.id === bl.id)[0];
-//   return {
-//     id: bl.id,
-//     metadata: metadata,
-//     blogContent: blog,
-//   };
-// });
+export async function getBlogContentById(id: string) {
+  try {
+    const res = await fetch(`${API_BASE}/api/blogs/${id}`, {
+      cache: "no-store",
+    });
+    if (!res.ok) throw new Error(`Failed to fetch blogs: ${res.status}`);
+    const data = await res.json();
+    return { id: data.id, blogContent: data.blogContent };
+  } catch (err) {
+    console.error("Error in getAllBlogsContent:", err);
+    throw err;
+  }
+}
+
+export async function getBlogMetaById(id: string) {
+  try {
+    const res = await fetch(`${API_BASE}/api/blogs/${id}`, {
+      cache: "no-store",
+    });
+    if (!res.ok) throw new Error(`Failed to fetch blogs: ${res.status}`);
+    const data = await res.json();
+    return { id: data.id, blogMeta: data.blogMeta };
+  } catch (err) {
+    console.error("Error in getAllBlogsContent:", err);
+    throw err;
+  }
+}
+
+export async function getAllTopics() {
+  try {
+    const res = await fetch(`${API_BASE}/api/blogTopics`, {
+      cache: "no-store",
+    });
+    if (!res.ok) throw new Error(`Failed to fetch topics: ${res.status}`);
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Error in getAllTopics:", err);
+    throw err;
+  }
+}
+
+export async function allTopics() {
+  const topics: BlogTopicsType = await getAllTopics();
+  return topics;
+}
+
+export async function getAllBlogs() {
+  const res = await fetch(`${API_BASE}/api/blogs`, { cache: "no-store" });
+  if (!res.ok) throw new Error("Failed to fetch blogs");
+  return res.json();
+}
+
+export async function getAllFeaturedBlogs() {
+  try {
+    const res = await fetch(`${API_BASE}/api/featuredBlogs`, {
+      cache: "no-store",
+    });
+    if (!res.ok)
+      throw new Error(`Failed to fetch featured blogs: ${res.status}`);
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Error in getAllFeaturedBlogs:", err);
+    throw err;
+  }
+}
+
+export async function getAllDrafts() {
+  try {
+    const res = await fetch(`${API_BASE}/api/drafts`, {
+      cache: "no-store",
+    });
+    if (!res.ok)
+      throw new Error(`Failed to fetch featured blogs: ${res.status}`);
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Error in getAllFeaturedBlogs:", err);
+    throw err;
+  }
+}
+
+export async function getAllComments() {
+  try {
+    const res = await fetch(`${API_BASE}/api/comments`, {
+      cache: "no-store",
+    });
+    if (!res.ok)
+      throw new Error(`Failed to fetch featured blogs: ${res.status}`);
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Error in getAllFeaturedBlogs:", err);
+    throw err;
+  }
+}
+
+export async function getAllTags() {
+  try {
+    const res = await fetch(`${API_BASE}/api/tags`, {
+      cache: "no-store",
+    });
+    if (!res.ok)
+      throw new Error(`Failed to fetch featured blogs: ${res.status}`);
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Error in getAllFeaturedBlogs:", err);
+    throw err;
+  }
+}
+
+export async function getAllMilestones() {
+  try {
+    const res = await fetch(`${API_BASE}/api/milestones`, {
+      cache: "no-store",
+    });
+    if (!res.ok)
+      throw new Error(`Failed to fetch featured blogs: ${res.status}`);
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Error in getAllFeaturedBlogs:", err);
+    throw err;
+  }
+}
+
+export const getCommentsById = async (id: string) => {
+  const comments: commentsType = await getAllComments();
+  return comments.filter((c) => c.id === id);
+};
 
 export const getTopicFromLink = (link: string) =>
   link
@@ -52,8 +177,9 @@ export const getLinkFromTopic = (b: string) =>
     .map((p) => (p === "%26" ? "&" : p))
     .join("-");
 
-export const getTopicMatchingPage = (page: string) => {
-  return getAllTopics().find(
+export const getTopicMatchingPage = async (page: string) => {
+  const topics: BlogTopicsType = await getAllTopics();
+  return topics.find(
     (t) =>
       getLinkFromTopic(t.title) ===
       page
@@ -63,25 +189,31 @@ export const getTopicMatchingPage = (page: string) => {
   );
 };
 
-export const getFeaturedBlogByTopic = (topic: string) => {
-  const targetBlogId = getAllFeaturedBlogs().find((f) => f.topic === topic)?.id;
-  return filterBlogsBy("id", targetBlogId || [])[0];
+export const getFeaturedBlogByTopic = async (topic: string) => {
+  const allFeaturedBlogs: { id: string; topic: string }[] =
+    await getAllFeaturedBlogs();
+  const targetBlogId = allFeaturedBlogs.find((f) => f.topic === topic)?.id;
+  const blog = await getBlogMetaById(targetBlogId || "");
+  return blog;
 };
 
-export const checkIsFeatured = (id: string) =>
-  getAllFeaturedBlogs().some((f) => f.id === id);
+export const checkIsFeatured = async (id: string) => {
+  const allFeaturedBlogs: { id: string; topic: string }[] =
+    await getAllFeaturedBlogs();
+  const isFeatured = allFeaturedBlogs.some((f) => f.id === id);
+  return isFeatured;
+};
 
-export const getBlogContentById = (blogId: string) =>
-  getAllBlogsContent().find((b) => b.id === blogId)?.blog;
+export const getMilestonesByTopic = async (topic: string) => {
+  const milestones: Milestones[] = await getAllMilestones();
+  return milestones.find((m) => m.topic === topic);
+};
 
-export const getMilestonesByTopic = (topic: string) =>
-  getAllMilestones().find((m) => m.topic === topic);
-
-export const filterBlogsBy = (
+export const filterBlogsBy = async (
   type: string,
   filter: string | number | string[]
 ) => {
-  const allBlogs = getAllBlogs();
+  const allBlogs: BlogsType = await getAllBlogs();
   switch (type) {
     case "id":
       return allBlogs.filter((blog) => blog.id === filter);
@@ -112,27 +244,7 @@ export const filterBlogsBy = (
   }
 };
 
-export const filterDraftsBy = (
-  type: string,
-  filter: string | number | string[]
-) => {
-  const allBlogs = getAllDrafts();
-  switch (type) {
-    case "id":
-      return allBlogs.filter((blog) => blog.id === filter);
-    case "image":
-      return allBlogs.filter((blog) => blog.image === filter);
-    case "topic":
-      return allBlogs.filter((blog) => blog.topic === filter);
-    case "title":
-      return allBlogs.filter((blog) => blog.title === filter);
-    case "dateCreated":
-      return allBlogs.filter((blog) => blog.dateCreated === filter);
-    case "tags":
-      return allBlogs.filter((blog) =>
-        blog.tags.includes(typeof filter === "string" ? filter : "")
-      );
-    default:
-      return allBlogs;
-  }
+export const filterDraftsByTopic = async (topic: string) => {
+  const allBlogs: draftsType = await getAllDrafts();
+  return allBlogs.filter((blog) => blog.topic === topic);
 };
