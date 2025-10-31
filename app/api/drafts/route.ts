@@ -8,12 +8,15 @@ import {
   updateDoc,
   deleteDoc,
   collection,
+  query,
+  where,
 } from "firebase/firestore";
 
 // GET: fetch all drafts or one by ID
 export async function GET(req: Request) {
   try {
     const url = new URL(req.url);
+    const topic = url.searchParams.get("topic");
     const id = url.searchParams.get("id");
 
     if (id) {
@@ -25,6 +28,19 @@ export async function GET(req: Request) {
         return new Response("Draft not found", { status: 404 });
 
       return NextResponse.json(draftSnap.data());
+    } else if (topic) {
+      const blogRef = collection(db, "drafts");
+      const q = query(blogRef, where("topic", "==", topic));
+      const querySnapshot = await getDocs(q);
+
+      const drafts = querySnapshot.docs.map((doc) => doc.data());
+
+      if (drafts.length === 0)
+        return new Response("No featured blogs found for this topic", {
+          status: 404,
+        });
+
+      return NextResponse.json(drafts);
     } else {
       // Fetch all drafts
       const draftSnapshot = await getDocs(collection(db, "drafts"));

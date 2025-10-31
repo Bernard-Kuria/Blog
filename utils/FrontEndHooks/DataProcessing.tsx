@@ -44,6 +44,12 @@ export async function getBlogContentById(id: string) {
   }
 }
 
+export async function getAllBlogs() {
+  const res = await fetch(`${API_BASE}/api/blogs`, { cache: "no-store" });
+  if (!res.ok) throw new Error("Failed to fetch blogs");
+  return res.json();
+}
+
 export async function getBlogMetaById(id: string) {
   try {
     const res = await fetch(`${API_BASE}/api/blogs/${id}`, {
@@ -75,12 +81,6 @@ export async function getAllTopics() {
 export async function allTopics() {
   const topics: BlogTopicsType = await getAllTopics();
   return topics;
-}
-
-export async function getAllBlogs() {
-  const res = await fetch(`${API_BASE}/api/blogs`, { cache: "no-store" });
-  if (!res.ok) throw new Error("Failed to fetch blogs");
-  return res.json();
 }
 
 export async function getAllFeaturedBlogs() {
@@ -217,28 +217,8 @@ export const filterBlogsBy = async (
   switch (type) {
     case "id":
       return allBlogs.filter((blog) => blog.id === filter);
-    case "image":
-      return allBlogs.filter((blog) => blog.blogMeta.image === filter);
     case "topic":
       return allBlogs.filter((blog) => blog.blogMeta.topic === filter);
-    case "title":
-      return allBlogs.filter((blog) => blog.blogMeta.title === filter);
-    case "subtitle":
-      return allBlogs.filter((blog) => blog.blogMeta.subtitle === filter);
-    case "dateCreated":
-      return allBlogs.filter((blog) => blog.blogMeta.dateCreated === filter);
-    case "tags":
-      return allBlogs.filter((blog) =>
-        blog.blogMeta.tags.includes(typeof filter === "string" ? filter : "")
-      );
-    case "minsRead":
-      return allBlogs.filter((blog) => blog.blogMeta.minsRead === filter);
-    case "likes":
-      return allBlogs.filter((blog) => blog.blogMeta.likes === filter);
-    case "comments":
-      return allBlogs.filter((blog) => blog.blogMeta.comments === filter);
-    case "views":
-      return allBlogs.filter((blog) => blog.blogMeta.views === filter);
     default:
       return allBlogs;
   }

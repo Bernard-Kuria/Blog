@@ -7,7 +7,7 @@ import Blogs from "@components/Blogs";
 import Hero from "@components/Hero";
 
 import {
-  allTopics,
+  getAllTopics,
   getLinkFromTopic,
 } from "@utils/FrontEndHooks/DataProcessing";
 import { BlogTopicsType } from "@lib/types";
@@ -21,7 +21,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchTopics() {
       try {
-        const data = await allTopics();
+        const data: BlogTopicsType = await getAllTopics();
         setTopics(data);
       } catch (err) {
         console.error("Failed to fetch topics:", err);

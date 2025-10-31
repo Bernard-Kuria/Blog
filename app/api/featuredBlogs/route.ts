@@ -3,38 +3,58 @@ import { db } from "@lib/firebase";
 import {
   doc,
   setDoc,
-  getDoc,
   getDocs,
   deleteDoc,
   collection,
+  query,
+  where,
+  getDoc,
 } from "firebase/firestore";
 
 // GET: fetch all featured blogs or one by ID
 export async function GET(req: Request) {
   try {
     const url = new URL(req.url);
+    const topic = url.searchParams.get("topic");
     const id = url.searchParams.get("id");
 
+    // Fetch by ID
     if (id) {
-      // Fetch specific blog
-      const featuredblogRef = doc(db, "featuredBlogs", id);
-      const featuredblogSnap = await getDoc(featuredblogRef);
+      const docRef = doc(db, "featuredBlogs", id);
+      const docSnap = await getDoc(docRef);
+      if (!docSnap.exists())
+        return new Response("Featured blog not found", { status: 404 });
 
-      if (!featuredblogSnap.exists())
-        return new Response("Featured Blog not found", { status: 404 });
+      return NextResponse.json({ id: docSnap.id, ...docSnap.data() });
+    }
 
-      return NextResponse.json(featuredblogSnap.data());
-    } else {
-      // Fetch all blogs
-      const blogSnapshot = await getDocs(collection(db, "featuredBlogs"));
+    // Fetch by topic
+    if (topic) {
+      const featuredblogRef = collection(db, "featuredBlogs");
+      const q = query(featuredblogRef, where("draftMeta.topic", "==", topic));
+      const querySnapshot = await getDocs(q);
 
-      const featuredBlogs = blogSnapshot.docs.map((doc) => ({
+      const featuredBlogs = querySnapshot.docs.map((doc) => ({
         id: doc.id,
-        topic: doc.data().topic,
+        ...doc.data(),
       }));
+
+      if (featuredBlogs.length === 0)
+        return new Response("No featured blogs found for this topic", {
+          status: 404,
+        });
 
       return NextResponse.json(featuredBlogs);
     }
+
+    // Fetch all featured blogs
+    const snapshot = await getDocs(collection(db, "featuredBlogs"));
+    const allBlogs = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    return NextResponse.json(allBlogs);
   } catch (error) {
     console.error("Error fetching featured blogs:", error);
     return new Response("Failed to fetch featured blogs", { status: 500 });

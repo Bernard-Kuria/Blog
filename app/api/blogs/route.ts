@@ -8,12 +8,15 @@ import {
   updateDoc,
   deleteDoc,
   collection,
+  query,
+  where,
 } from "firebase/firestore";
 
 // GET: fetch all blogs or one by ID
 export async function GET(req: Request) {
   try {
     const url = new URL(req.url);
+    const topic = url.searchParams.get("topic");
     const id = url.searchParams.get("id");
 
     if (id) {
@@ -25,6 +28,22 @@ export async function GET(req: Request) {
         return new Response("Blog not found", { status: 404 });
 
       return NextResponse.json(blogSnap.data());
+    } else if (topic) {
+      const blogRef = collection(db, "blogs");
+      const q = query(blogRef, where("blogMeta.topic", "==", topic));
+      const querySnapshot = await getDocs(q);
+
+      const blogs = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      if (blogs.length === 0)
+        return new Response("No featured blogs found for this topic", {
+          status: 404,
+        });
+
+      return NextResponse.json(blogs);
     } else {
       // Fetch all blogs
       const blogSnapshot = await getDocs(collection(db, "blogs"));

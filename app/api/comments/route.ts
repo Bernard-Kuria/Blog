@@ -8,6 +8,8 @@ import {
   collection,
   addDoc,
   getDoc,
+  where,
+  query,
 } from "firebase/firestore";
 
 // GET: fetch all comments or one by ID
@@ -15,24 +17,40 @@ export async function GET(req: Request) {
   try {
     const url = new URL(req.url);
     const id = url.searchParams.get("id");
+    const matchId = url.searchParams.get("matchId"); // 👈 new query param
 
+    // ✅ Case 1: Fetch comments with specific internal ID
+    if (matchId) {
+      const commentsRef = collection(db, "comments");
+      const q = query(commentsRef, where("id", "==", matchId));
+      const querySnapshot = await getDocs(q);
+
+      const comments = querySnapshot.docs.map((doc) => ({
+        docId: doc.id, // Firebase doc ID (optional)
+        ...doc.data(),
+      }));
+
+      if (comments.length === 0)
+        return new Response("No comments found for this ID", { status: 404 });
+
+      return NextResponse.json(comments);
+    }
+
+    // ✅ Case 2: Fetch specific comment document
     if (id) {
-      // Fetch specific comment
       const commentsRef = doc(db, "comments", id);
       const commentsSnap = await getDoc(commentsRef);
 
       if (!commentsSnap.exists())
-        return new Response("Featured comment not found", { status: 404 });
+        return new Response("Comment not found", { status: 404 });
 
       return NextResponse.json(commentsSnap.data());
-    } else {
-      // Fetch all comments
-      const commentSnapshot = await getDocs(collection(db, "comments"));
-
-      const comments = commentSnapshot.docs.map((comment) => comment.data());
-
-      return NextResponse.json(comments);
     }
+
+    // ✅ Case 3: Fetch all comments
+    const commentSnapshot = await getDocs(collection(db, "comments"));
+    const comments = commentSnapshot.docs.map((doc) => doc.data());
+    return NextResponse.json(comments);
   } catch (error) {
     console.error("Error fetching comments:", error);
     return new Response("Failed to fetch comments", { status: 500 });

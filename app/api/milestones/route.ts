@@ -14,11 +14,11 @@ import {
 export async function GET(req: Request) {
   try {
     const url = new URL(req.url);
-    const id = url.searchParams.get("id");
+    const topic = url.searchParams.get("topic");
 
-    if (id) {
+    if (topic) {
       // Fetch specific milestone
-      const milestonesRef = doc(db, "milestones", id);
+      const milestonesRef = doc(db, "milestones", topic);
       const milestonesSnap = await getDoc(milestonesRef);
 
       if (!milestonesSnap.exists())
