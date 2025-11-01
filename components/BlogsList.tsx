@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { FontAwesomeIcon } from "@node_modules/@fortawesome/react-fontawesome/dist";
 
 import { Blog } from "@lib/types";
-import { checkIsFeatured } from "@services/featuredBlogs";
+import { checkIsFeatured } from "@s/featuredBlogs";
 import { useEffect, useState } from "react";
 
 export default function BlogsList({ blog }: { blog: Blog }) {
