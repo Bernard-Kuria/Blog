@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Blogs from "@components/Blogs";
 import Hero from "@components/Hero";
 
-import { getAllTopics } from "@services/topics";
+import { getAllTopics } from "@s/topics";
 
 import { getLinkFromTopic } from "@utils/conversions";
 
