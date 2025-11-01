@@ -6,7 +6,7 @@ import Link from "next/link";
 import Draftify from "@c/Draftify";
 import SectionTitle from "@c/SectionTitle";
 
-import { handleTagChange, useTagsAndTopics } from "@h/useCreateModify";
+import { handleTagChange, useTagsAndTopics } from "@hooks/useCreateModify";
 
 export default function CreateModifyBlog({
   params,

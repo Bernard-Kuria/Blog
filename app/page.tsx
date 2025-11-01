@@ -3,8 +3,8 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import Blogs from "@components/Blogs";
-import Hero from "@components/Hero";
+import Blogs from "@c/Blogs";
+import Hero from "@c/Hero";
 
 import { getAllTopics } from "@services/topics";
 

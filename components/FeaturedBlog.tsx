@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import { getFeaturedBlogs } from "@s/featuredBlogs";
+import { getFeaturedBlogs } from "@services/featuredBlogs";
 import { getAllBlogs } from "@services/blogs";
 import { getLinkFromTopic } from "@utils/conversions";
 import Link from "@node_modules/next/link";

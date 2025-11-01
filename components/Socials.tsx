@@ -1,6 +1,6 @@
 "use client";
 
-import "@l/icons";
+import "@lib/icons";
 
 import { IconPrefix, IconName } from "@fortawesome/fontawesome-common-types";
 
