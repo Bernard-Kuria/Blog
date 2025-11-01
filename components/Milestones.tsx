@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getAllMilestones } from "@services/milestones";
+import { getAllMilestones } from "@s/milestones";
 import type { Milestones } from "@lib/types";
 
 export default function Milestones({

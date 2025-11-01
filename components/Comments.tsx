@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { comment, commentsType } from "@lib/types";
 import { useEffect, useState } from "react";
 
-import { getSpecificBlogComments } from "@services/comments";
+import { getSpecificBlogComments } from "@s/comments";
 
 export default function Comments({ blogId }: { blogId: string }) {
   const [comments, setComments] = useState<commentsType>();

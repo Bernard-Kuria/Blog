@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 
-import { getFeaturedBlogs } from "@services/featuredBlogs";
-import { getAllBlogs } from "@services/blogs";
+import { getFeaturedBlogs } from "@s/featuredBlogs";
+import { getAllBlogs } from "@s/blogs";
 import { getLinkFromTopic } from "@utils/conversions";
 import Link from "@node_modules/next/link";
 import { useEffect, useState } from "react";
