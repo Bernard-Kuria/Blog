@@ -27,8 +27,8 @@ export async function GET(
       };
     });
 
-    if (comments.length === 0)
-      return new Response("No comments found for this ID", { status: 404 });
+    // if (comments.length === 0)
+    //   return new Response("No comments found for this ID", { status: 404 });
 
     return NextResponse.json(comments);
   } catch (error) {

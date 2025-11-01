@@ -1,6 +1,4 @@
-import { getAllComments } from "@services/comments";
-import { commentsType } from "./types";
-import { BlogTopicsType } from "./types";
+import { BlogTopicsType } from "../lib/types";
 import { getAllTopics } from "@services/topics";
 
 export const getTopicFromLink = (link: string) =>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getMilestonesByTopic } from "@utils/FrontEndHooks/DataProcessing";
+import { getAllMilestones } from "@services/milestones";
 import type { Milestones } from "@lib/types";
 
 export default function Milestones({
@@ -12,7 +12,7 @@ export default function Milestones({
   const [milestones, setMilestones] = useState<Milestones>();
 
   useEffect(() => {
-    getMilestonesByTopic(topic).then(setMilestones);
+    getAllMilestones(topic).then(setMilestones);
   }, []);
   return (
     <div className="w-full grid justify-center h-[300px] text-white bg-(--primary-blue)">

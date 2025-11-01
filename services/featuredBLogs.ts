@@ -1,4 +1,4 @@
-import { API_BASE } from "@lib/constants";
+import { API_BASE } from "@utils/constants";
 
 export async function getFeaturedBlogs(filters?: {
   id?: string;
@@ -30,7 +30,7 @@ export async function getFeaturedBlogs(filters?: {
 export const checkIsFeatured = async (id: string) => {
   try {
     const blog = await getFeaturedBlogs({ id });
-    return !!blog; // !! converts to real boolean
+    return !!blog.topic; // !! converts to real boolean
   } catch {
     return false;
   }

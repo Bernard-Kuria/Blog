@@ -1,35 +1,22 @@
 "use client";
 
 import Image from "next/image";
-import {
-  getFeaturedBlogByTopic,
-  getLinkFromTopic,
-} from "@utils/FrontEndHooks/DataProcessing";
+
+import { getFeaturedBlogs } from "@services/featuredBlogs";
+import { getAllBlogs } from "@services/blogs";
+import { getLinkFromTopic } from "@utils/conversions";
 import Link from "@node_modules/next/link";
 import { useEffect, useState } from "react";
 import { Blog } from "@lib/types";
 
 export default function FeaturedBlog({ topic }: { topic: string }) {
-  const [featuredBlog, setFeaturedBlog] = useState<Blog>({
-    id: "",
-    blogMeta: {
-      image: "",
-      topic: "",
-      title: "",
-      subtitle: "",
-      dateCreated: "",
-      tags: [""],
-      likes: 0,
-      comments: 0,
-      views: 0,
-      minsRead: 0,
-    },
-  });
+  console.log(topic);
+  const [featuredBlog, setFeaturedBlog] = useState<Blog | undefined>(undefined);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    getFeaturedBlogByTopic(topic)
-      .then(setFeaturedBlog)
+    getFeaturedBlogs({ topic: topic })
+      .then((e) => getAllBlogs({ id: e[0].id }).then(setFeaturedBlog))
       .finally(() => setLoaded(true));
   }, []);
 

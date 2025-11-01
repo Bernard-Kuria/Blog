@@ -22,8 +22,8 @@ export async function GET(req: Request) {
     if (id) {
       const docRef = doc(db, "featuredBlogs", id);
       const docSnap = await getDoc(docRef);
-      if (!docSnap.exists())
-        return new Response("Featured blog not found", { status: 404 });
+      // if (!docSnap.exists())
+      //   return new Response("Featured blog not found", { status: 404 });
 
       return NextResponse.json({ id: docSnap.id, ...docSnap.data() });
     }
@@ -31,7 +31,7 @@ export async function GET(req: Request) {
     // Fetch by topic
     if (topic) {
       const featuredblogRef = collection(db, "featuredBlogs");
-      const q = query(featuredblogRef, where("draftMeta.topic", "==", topic));
+      const q = query(featuredblogRef, where("topic", "==", topic));
       const querySnapshot = await getDocs(q);
 
       const featuredBlogs = querySnapshot.docs.map((doc) => ({
@@ -39,10 +39,10 @@ export async function GET(req: Request) {
         ...doc.data(),
       }));
 
-      if (featuredBlogs.length === 0)
-        return new Response("No featured blogs found for this topic", {
-          status: 404,
-        });
+      // if (featuredBlogs.length === 0)
+      //   return new Response("No featured blogs found for this topic", {
+      //     status: 404,
+      //   });
 
       return NextResponse.json(featuredBlogs);
     }

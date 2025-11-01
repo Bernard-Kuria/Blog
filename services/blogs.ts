@@ -1,4 +1,4 @@
-import { API_BASE } from "@lib/constants";
+import { API_BASE } from "@utils/constants";
 
 export async function getAllBlogs(filters?: { id?: string; topic?: string }) {
   const params = new URLSearchParams();
@@ -6,12 +6,9 @@ export async function getAllBlogs(filters?: { id?: string; topic?: string }) {
   if (filters?.id) params.append("id", filters.id);
   if (filters?.topic) params.append("topic", filters.topic);
 
-  const res = await fetch(
-    `${API_BASE}/api/featuredBlogs?${params.toString()}`,
-    {
-      cache: "no-store",
-    }
-  );
+  const res = await fetch(`${API_BASE}/api/blogs?${params.toString()}`, {
+    cache: "no-store",
+  });
 
   if (!res.ok) throw new Error("Failed to fetch blogs");
   return res.json();

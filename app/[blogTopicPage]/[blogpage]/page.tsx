@@ -7,10 +7,10 @@ import BlogReading from "@c/BlogReading";
 import Comments from "@c/Comments";
 import Blogs from "@c/Blogs";
 
-import {
-  getAllBlogs,
-  getTopicFromLink,
-} from "@utils/FrontEndHooks/DataProcessing";
+import { getAllBlogs } from "@services/blogs";
+
+import { getTopicFromLink } from "@utils/conversions";
+
 import { BlogsType } from "@lib/types";
 
 export default function Page({
@@ -18,23 +18,7 @@ export default function Page({
 }: {
   params: Promise<{ blogpage: string }>;
 }) {
-  const [blogs, setBlogs] = useState<BlogsType>([
-    {
-      id: "",
-      blogMeta: {
-        image: "",
-        topic: "",
-        title: "",
-        subtitle: "",
-        dateCreated: "",
-        tags: [""],
-        likes: 0,
-        comments: 0,
-        views: 0,
-        minsRead: 0,
-      },
-    },
-  ]);
+  const [blogs, setBlogs] = useState<BlogsType | undefined>(undefined);
   const [loaded, setLoaded] = useState(false);
   const router = useRouter();
   const param = useParams();
@@ -64,18 +48,20 @@ export default function Page({
       <Comments blogId={blogpage} />
       <strong>More on this topic:</strong>
       <div className="page-layout flex flex-wrap gap-[20px]">
-        {blogs.map((b) => {
-          const link = backLink + "/" + b.id;
-          return b.blogMeta.topic === topic && b.id !== blogpage ? (
-            <Blogs
-              key={b.id}
-              link={link}
-              imageUrl={b.blogMeta.image}
-              topic={b.blogMeta.title}
-              timeStamp={b.blogMeta.dateCreated}
-            />
-          ) : null;
-        })}
+        {blogs
+          ? blogs.map((b) => {
+              const link = backLink + "/" + b.id;
+              return b.blogMeta.topic === topic && b.id !== blogpage ? (
+                <Blogs
+                  key={b.id}
+                  link={link}
+                  imageUrl={b.blogMeta.image}
+                  topic={b.blogMeta.title}
+                  timeStamp={b.blogMeta.dateCreated}
+                />
+              ) : null;
+            })
+          : null}
       </div>
     </div>
   );

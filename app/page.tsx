@@ -6,10 +6,10 @@ import { useEffect, useState } from "react";
 import Blogs from "@components/Blogs";
 import Hero from "@components/Hero";
 
-import {
-  getAllTopics,
-  getLinkFromTopic,
-} from "@utils/FrontEndHooks/DataProcessing";
+import { getAllTopics } from "@services/topics";
+
+import { getLinkFromTopic } from "@utils/conversions";
+
 import { BlogTopicsType } from "@lib/types";
 
 export default function Home() {

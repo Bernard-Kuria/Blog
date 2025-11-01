@@ -1,4 +1,11 @@
-import { homePageImages } from "@utils/FrontEndHooks/DataProcessing";
+const imagesHome = [
+  "/assets/homeImages/chill.jpg",
+  "/assets/homeImages/bike-riding.jpg",
+  "/assets/homeImages/jkuat-hackathon.jpg",
+];
+
+export const homePageImages = () => imagesHome;
+
 import Image from "next/image";
 
 export default function Hero() {

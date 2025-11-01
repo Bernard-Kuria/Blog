@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { renderTable } from "../../../utils/DraftifyHooks/tableHooks/tableEffects";
+import { renderTable } from "../../../hooks/DraftifyHooks/tableHooks/tableEffects";
 
 export default function TableEditor({ block, onTableChange }) {
   return (

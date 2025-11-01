@@ -6,11 +6,11 @@ import SectionTitle from "@c/SectionTitle";
 import BlogsList from "@c/BlogsList";
 import DraftList from "@c/DraftList";
 import { FontAwesomeIcon } from "@node_modules/@fortawesome/react-fontawesome/dist";
-import {
-  filterBlogsBy,
-  filterDraftsByTopic,
-  getAllTopics,
-} from "@utils/FrontEndHooks/DataProcessing";
+
+import { getAllBlogs } from "@services/blogs";
+import { getAllDrafts } from "@services/drafts";
+import { getAllTopics } from "@services/topics";
+
 import { BlogsType, BlogTopicsType, draftsType } from "@lib/types";
 
 export default function Dashboard() {
@@ -32,8 +32,12 @@ export default function Dashboard() {
 
       if (allTopics) {
         for (const topic of allTopics) {
-          const blogs = await filterBlogsBy("topic", topic.title);
-          const drafts = await filterDraftsByTopic(topic.title);
+          const blogs = await getAllBlogs({
+            topic: topic.title,
+          });
+          const drafts = await getAllDrafts({
+            topic: topic.title,
+          });
 
           // Load the blogsMap and draftsMap in {topic: draft/blog}
           blogsMap[topic.title] = blogs;

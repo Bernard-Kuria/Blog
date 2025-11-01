@@ -6,17 +6,20 @@ import { usePathname } from "next/navigation";
 import { FontAwesomeIcon } from "@node_modules/@fortawesome/react-fontawesome/dist";
 
 import { Blog } from "@lib/types";
-import { checkIsFeatured } from "@utils/FrontEndHooks/DataProcessing";
+import { checkIsFeatured } from "@services/featuredBlogs";
 import { useEffect, useState } from "react";
 
 export default function BlogsList({ blog }: { blog: Blog }) {
-  const [isFeatured, setIsFeatured] = useState(false);
+  const [isFeatured, setIsFeatured] = useState<boolean | undefined>();
   const location = usePathname();
   const { id } = blog;
   const { title, subtitle, views, comments, likes } = blog.blogMeta;
 
   useEffect(() => {
-    checkIsFeatured(id).then(setIsFeatured);
+    async function checkStatus() {
+      return await checkIsFeatured(id);
+    }
+    checkStatus().then(setIsFeatured);
   }, []);
 
   return (

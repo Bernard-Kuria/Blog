@@ -1,4 +1,4 @@
-import { API_BASE } from "@lib/constants";
+import { API_BASE } from "@utils/constants";
 
 export async function getAllComments() {
   try {
@@ -25,7 +25,7 @@ export const getSpecificBlogComments = async (id: string) => {
     const data = await res.json();
     return data;
   } catch (err) {
-    console.error("Error in getAllFeaturedBlogs:", err);
+    console.error("Error in getSpecificBlogComments:", err);
     throw err;
   }
 };

@@ -2,12 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import {
-  getLinkFromTopic,
-  getTopicFromLink,
-} from "@utils/FrontEndHooks/DataProcessing";
-
 import { BlogsType } from "@lib/types";
+import { getLinkFromTopic, getTopicFromLink } from "@utils/conversions";
 
 export default function BlogCards({
   location,
@@ -26,7 +22,7 @@ export default function BlogCards({
       >
         <div className="border flex flex-col justify-between border-gray-400 h-fit">
           <div className="relative h-[250px]">
-            <Image src={`${image}`} alt="" fill />
+            {image ? <Image src={`${image}`} alt="" fill /> : ""}
           </div>
           <div className="grid gap-[10px] p-[20px]">
             <div className="h-[65px] overflow-hidden sub-title text-(--primary-blue)">

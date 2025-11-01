@@ -8,12 +8,12 @@ import Milestones from "@c/Milestones";
 import Blogs from "@c/Blogs";
 import BlogCards from "@c/BlogCard";
 
-import {
-  filterBlogsBy,
-  getLinkFromTopic,
-  getTopicMatchingPage,
-  getAllTopics,
-} from "@utils/FrontEndHooks/DataProcessing";
+import { getAllBlogs } from "@services/blogs";
+
+import { getAllTopics } from "@services/topics";
+
+import { getLinkFromTopic, getTopicMatchingPage } from "@utils/conversions";
+
 import { BlogsType, BlogTopicsType, topic } from "@lib/types";
 
 export default function Page({
@@ -25,12 +25,7 @@ export default function Page({
   const [targetBlogs, setTargetBlogs] = useState<BlogsType>([]);
 
   const [loaded, setLoaded] = useState(false);
-  const [topicPage, setTopicPage] = useState<topic | undefined>({
-    id: "",
-    image: "",
-    title: "",
-    timeStamp: "",
-  });
+  const [topicPage, setTopicPage] = useState<topic | undefined>(undefined);
   const [allTopics, setAllTopics] = useState<BlogTopicsType>([]);
   const page = blogTopicPage
     .split("-")
@@ -42,7 +37,7 @@ export default function Page({
   }, []);
 
   useEffect(() => {
-    filterBlogsBy("topic", topicPage?.title || "")
+    getAllBlogs({ topic: topicPage?.title || "" })
       ?.then(setTargetBlogs)
       .finally(() => setLoaded(true));
 

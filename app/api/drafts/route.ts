@@ -35,11 +35,6 @@ export async function GET(req: Request) {
 
       const drafts = querySnapshot.docs.map((doc) => doc.data());
 
-      if (drafts.length === 0)
-        return new Response("No featured blogs found for this topic", {
-          status: 404,
-        });
-
       return NextResponse.json(drafts);
     } else {
       // Fetch all drafts

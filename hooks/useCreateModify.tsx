@@ -4,10 +4,8 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import { blogContent, content, tagsType } from "@lib/types";
 
-import {
-  getAllTags,
-  getBlogContentById,
-} from "@utils/FrontEndHooks/DataProcessing";
+import { getAllTags } from "@services/tags";
+import { getBlogContentById } from "@services/blogContent";
 
 export function useTagsAndTopics(id: string) {
   const [topicList, setTopicList] = useState<string[]>([]);

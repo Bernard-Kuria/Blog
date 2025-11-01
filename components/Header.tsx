@@ -7,12 +7,10 @@ import { usePathname } from "next/navigation";
 
 import Login from "./Login";
 
-import { applyToggleStyles } from "@utils/FrontEndHooks/UIhooks";
+import { applyToggleStyles } from "@hooks/useTheme";
 
-import {
-  getLinkFromTopic,
-  getAllTopics,
-} from "@utils/FrontEndHooks/DataProcessing";
+import { getLinkFromTopic } from "@utils/conversions";
+import { getAllTopics } from "@services/topics";
 import { topic } from "@lib/types";
 
 export default function Header() {

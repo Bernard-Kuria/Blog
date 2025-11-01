@@ -5,12 +5,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { comment, commentsType } from "@lib/types";
 import { useEffect, useState } from "react";
 
-import { getCommentsById } from "@utils/FrontEndHooks/DataProcessing";
+import { getSpecificBlogComments } from "@services/comments";
 
 export default function Comments({ blogId }: { blogId: string }) {
   const [comments, setComments] = useState<commentsType>();
   useEffect(() => {
-    getCommentsById(blogId).then(setComments);
+    getSpecificBlogComments(blogId).then(setComments);
   }, []);
 
   return (

@@ -6,7 +6,7 @@ import {
   dragHandler,
   dragLeaveHandler,
   onFileChange,
-} from "../../../utils/DraftifyHooks/mediaHooks/mediaInteractions";
+} from "../../../hooks/DraftifyHooks/mediaHooks/mediaInteractions";
 
 export default function MediaEditor({ block, onChange }) {
   const [file, setFile] = useState("");
