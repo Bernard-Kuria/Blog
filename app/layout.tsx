@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Mulish, Lexend } from "next/font/google";
 import "./globals.css";
 import Header from "@c/Header";
-import "@l/icons";
 import Socials from "@c/Socials";
+import "@lib/icons";
 
 const mulish = Mulish({
   variable: "--font-mulish",
