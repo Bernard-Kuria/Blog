@@ -7,11 +7,11 @@ import BlogReading from "@c/BlogReading";
 import Comments from "@c/Comments";
 import Blogs from "@c/Blogs";
 
-import { getAllBlogs } from "@s/blogs";
+import { getAllBlogs } from "@services/blogs";
 
-import { getTopicFromLink } from "@u/conversions";
+import { getTopicFromLink } from "@utils/conversions";
 
-import { BlogsType } from "@l/types";
+import { BlogsType } from "@lib/types";
 
 export default function Page({
   params,

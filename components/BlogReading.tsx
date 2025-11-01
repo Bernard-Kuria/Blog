@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import OutputBlock from "./DraftifyProComponents/OutputBlock";
 
-import { getBlogContentById } from "@s/blogContent";
-import { getBlogMetaById } from "@s/blogs";
+import { getBlogContentById } from "@services/blogContent";
+import { getBlogMetaById } from "@services/blogs";
 import { blogContent, Blog } from "@lib/types";
 
 export default function BlogArea({ blogId }: { blogId: string }) {

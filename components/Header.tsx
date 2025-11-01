@@ -10,7 +10,7 @@ import Login from "./Login";
 import { applyToggleStyles } from "@hooks/useTheme";
 
 import { getLinkFromTopic } from "@utils/conversions";
-import { getAllTopics } from "@s/topics";
+import { getAllTopics } from "@services/topics";
 import { topic } from "@lib/types";
 
 export default function Header() {

@@ -7,9 +7,9 @@ import BlogsList from "@c/BlogsList";
 import DraftList from "@c/DraftList";
 import { FontAwesomeIcon } from "@node_modules/@fortawesome/react-fontawesome/dist";
 
-import { getAllBlogs } from "@s/blogs";
-import { getAllDrafts } from "@s/drafts";
-import { getAllTopics } from "@s/topics";
+import { getAllBlogs } from "@services/blogs";
+import { getAllDrafts } from "@services/drafts";
+import { getAllTopics } from "@services/topics";
 
 import { BlogsType, BlogTopicsType, draftsType } from "@lib/types";
 

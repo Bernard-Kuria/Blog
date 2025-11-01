@@ -8,9 +8,9 @@ import Milestones from "@c/Milestones";
 import Blogs from "@c/Blogs";
 import BlogCards from "@c/BlogCard";
 
-import { getAllBlogs } from "@s/blogs";
+import { getAllBlogs } from "@services/blogs";
 
-import { getAllTopics } from "@s/topics";
+import { getAllTopics } from "@services/topics";
 
 import { getLinkFromTopic, getTopicMatchingPage } from "@utils/conversions";
 
